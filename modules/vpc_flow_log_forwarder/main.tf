@@ -59,7 +59,7 @@ resource "aws_iam_policy" "this" {
     "${path.module}/policy.tmpl",
     {
       vpc_check          = var.subnet_ids != null
-      s3_check           = var.s3_log_bucket_arns == []
+      s3_check           = length(var.s3_log_bucket_arns) > 0
       s3_log_bucket_arns = jsonencode(var.s3_log_bucket_arns)
       kms_arn            = data.aws_kms_key.this.arn
     }
