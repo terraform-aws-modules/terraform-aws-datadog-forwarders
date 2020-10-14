@@ -17,8 +17,8 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
   name = "datadog/api_key"
 }
 
-module "datadog_log_forwarder" {
-  source = "git::https://github.com/clowdhaus/terraform-aws-datadog-forwarders.git//modules/rds_enhanced_monitoring_forwarder?ref=master"
+module "datadog_rds_enhanced_monitoring_forwarder" {
+  source  = "clowdhaus/datadog-forwarders/aws//modules/rds_enhanced_monitoring_forwarder"
 
   kms_alias             = "alias/datadog" # KMS key will need to be created outside of module
   dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn

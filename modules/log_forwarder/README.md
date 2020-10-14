@@ -16,7 +16,7 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
 }
 
 module "datadog_log_forwarder" {
-  source = "git::https://github.com/clowdhaus/terraform-aws-datadog-forwarders.git//modules/log_forwarder?ref=master"
+  source  = "clowdhaus/datadog-forwarders/aws//modules/log_forwarder"
 
   dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
 
