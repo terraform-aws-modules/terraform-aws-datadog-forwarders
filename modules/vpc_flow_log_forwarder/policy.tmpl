@@ -1,0 +1,29 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"%{ if vpc_check },
+        "ec2:CreateNetworkInterface",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DeleteNetworkInterface"%{ endif }
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "AnyResourceAccess"
+    }%{ if s3_check },
+    {
+      "Action": "s3:GetObject",
+      "Effect": "Allow",
+      "Resource": ${s3_log_bucket_arns},
+      "Sid": "ReadS3Logs"
+    }%{ endif }%{ if kms_arn != "" },
+    {
+      "Action": "kms:Decrypt",
+      "Effect": "Allow",
+      "Resource": "${kms_arn}",
+      "Sid": "DecryptKeys"
+    }%{ endif }
+  ]
+}

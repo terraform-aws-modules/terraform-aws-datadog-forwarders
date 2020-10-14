@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"%{ if vpc_check },
+        "ec2:CreateNetworkInterface",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DeleteNetworkInterface"%{ endif }
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "WriteLogs"
+    }%{ if kms_arn != "" },
+    {
+      "Action": "kms:Decrypt",
+      "Effect": "Allow",
+      "Resource": "${kms_arn}",
+      "Sid": "DecryptKeys"
+    }%{ endif }
+  ]
+}

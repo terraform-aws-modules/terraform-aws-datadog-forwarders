@@ -1,0 +1,43 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "tag:GetResources",
+        "logs:PutLogEvents"%{ if vpc_check },
+        "ec2:CreateNetworkInterface",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DeleteNetworkInterface"%{ endif }
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "AnyResourceAccess"
+    },
+    {
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "${datadog_s3_bucket}",
+        "${datadog_s3_bucket}/*"
+      ],
+      "Sid": "DatadogBucketFullAccess"
+    }%{ if s3_check },
+    {
+      "Action": "s3:GetObject",
+      "Effect": "Allow",
+      "Resource": ${s3_log_bucket_arns},
+      "Sid": "ReadS3Logs"
+    }%{ endif }%{ if dd_api_key_secret_arn != "" },
+    {
+      "Action": "secretsmanager:GetSecretValue",
+      "Effect": "Allow",
+      "Resource": "${dd_api_key_secret_arn}",
+      "Sid": "GetApiKeySecret"
+    }%{ endif }
+  ]
+}
