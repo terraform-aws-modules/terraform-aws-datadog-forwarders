@@ -16,11 +16,18 @@ The following resources are supported:
 
 Please refer to the official Datadog [`datadog-serverless-functions`](https://github.com/DataDog/datadog-serverless-functions/tree/master/aws) for further information on the forwarder lambda functions, configuraion via environment variables, and integration with PrivateLink endpoints.
 
-## Terraform versions
+## Security
 
-Terraform 0.12 and above are supported.
+There are several factors to keep in mind when working with and/or using this module that largely revolve around the decisions made based on security implications.
+
+1. Based on the functionality provided by the Datadog team at [`datadog-serverless-functions`](https://github.com/DataDog/datadog-serverless-functions/tree/master/aws), the recommended approach for providing your Datadog API key is through AWS Secrets Manager. The creation of this secret is not facilitated by this module and should be created manually (or through some other means where the secret is not passed as plain text into Terraform as input).
+    - Note: even though this is the recommended approach, the pattern used in the past of providing the `DD_API_KEY` as an environment variable is still supported by the module. Users are able to provde any and all environment variables to the forwarders through inputs (i.e. - `log_forwarder_environment_variables`) to configure the forwarders as desired. See [`settings.py`](https://github.com/DataDog/datadog-serverless-functions/blob/master/aws/logs_monitoring/settings.py) for more details on what environment variables are supported to configure the forwarders.
+2. The use of a KMS key to encrypt/decrypt API and APP keys is required by the [`rds_enhanced_monitoring_forwarder`](./modules/rds_enhanced_monitoring_forwarder) and [`vpc_flow_log_forwarder`](./modules/vpc_flow_log_forwarder) modules/functions per the uptream source at [`datadog-serverless-functions`](https://github.com/DataDog/datadog-serverless-functions/tree/master/aws). The creation of a KMS key has been left out of this module so that users are able to better manage their KMS CMK key (and therefore the policies and usage of said key) as they see fit without over-complicating this module.
+3. The roles and their permissions created by this module have several built in conditional checks in order to provide permission sets that allow the desired functionality while following the recommended approach of least privelege access. Nearly all attributes for the IAM roles and their permissions are accessible via inputs - even allowing users to provide their own IAM roles and/or policies to meet their organizational requirements.
 
 ## Usage
+
+See [`examples`](./examples) directory for working examples to reference:
 
 ```hcl
 # Note: you will need to create this secret manually prior to running
@@ -43,6 +50,8 @@ module "datadog_forwarders" {
 ```
 
 ## Examples
+
+Examples codified under the [`examples`](./examples) are intended to give users references for how to use the module(s) as well as testing/validating changes to the source code of the module(s). If contributing to the project, please be sure to make any appropriate updates to the relevant examples to allow maintainers to test your changes and to keep the examples up to date for users. Thank you!
 
 - [Complete](./examples/complete)
 - [Simple](./examples/simple)

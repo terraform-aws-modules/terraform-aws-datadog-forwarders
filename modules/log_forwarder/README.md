@@ -2,9 +2,18 @@
 
 Terraform module which creates Datadog log forwarder resources on AWS.
 
-## Terraform versions
+> The Datadog log forwarder is an AWS Lambda function that ships logs, custom metrics, and traces from your environment to Datadog. The Forwarder can:
+>
+> - Forward CloudWatch, ELB, S3, CloudTrail, VPC, SNS, and CloudFront logs to Datadog
+> - Forward S3 events to Datadog
+> - Forward Kinesis data stream events to Datadog (only CloudWatch logs are supported)
+> - Forward custom metrics from AWS Lambda functions using CloudWatch logs
+> - Forward traces from AWS Lambda functions using CloudWatch logs
+> - Generate and submit enhanced Lambda metrics (`aws.lambda.enhanced.*`) parsed from the AWS REPORT log: duration, billed_duration, max_memory_used, timeouts, out_of_memory, and estimated_cost
+>
+> For additional information on sending AWS services logs with the Datadog Forwarder, see [here](https://docs.datadoghq.com/logs/guide/send-aws-services-logs-with-the-datadog-lambda-function/).
 
-Terraform 0.12 and above are supported.
+Taken from: [`datadog-serverless-functions/aws/log_monitoring`](https://github.com/DataDog/datadog-serverless-functions/blob/master/aws/logs_monitoring/README.md)
 
 ## Usage
 
