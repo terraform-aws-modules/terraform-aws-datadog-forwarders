@@ -61,7 +61,7 @@ resource "aws_iam_policy" "this" {
       vpc_check          = var.subnet_ids != null
       s3_check           = length(var.s3_log_bucket_arns) > 0
       s3_log_bucket_arns = jsonencode(var.s3_log_bucket_arns)
-      kms_arn            = data.aws_kms_key.this.arn
+      kms_arn            = data.aws_kms_key.this[0].arn
     }
   )
 }
@@ -129,7 +129,7 @@ resource "aws_lambda_function" "this" {
     variables = merge(
       {
         DD_SITE          = var.dd_site
-        kmsEncryptedKeys = aws_kms_ciphertext.this.ciphertext_blob
+        kmsEncryptedKeys = aws_kms_ciphertext.this[0].ciphertext_blob
       },
       var.environment_variables,
       local.version_tag
@@ -171,19 +171,25 @@ resource "aws_cloudwatch_log_group" "this" {
 }
 
 data "aws_kms_key" "this" {
+  count = var.create ? 1 : 0
+
   key_id = var.kms_alias
 }
 
 data "aws_secretsmanager_secret_version" "datadog_api_key" {
+  count = var.create ? 1 : 0
+
   secret_id = var.dd_api_key_secret_arn
 }
 
 resource "aws_kms_ciphertext" "this" {
-  key_id = data.aws_kms_key.this.id
+  count = var.create ? 1 : 0
+
+  key_id = data.aws_kms_key.this[0].id
 
   plaintext = <<EOF
 {
-  "api_key": ${data.aws_secretsmanager_secret_version.datadog_api_key.secret_string},
+  "api_key": ${data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string},
   "app_key": ${var.dd_app_key}
 }
 EOF
