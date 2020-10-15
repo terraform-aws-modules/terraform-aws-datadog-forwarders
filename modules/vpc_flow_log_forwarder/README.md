@@ -101,3 +101,5 @@ module "datadog_vpc_flow_log_forwarder" {
 | role\_unique\_id | The stable and unique string identifying the forwarder lambda role. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+Apache-2.0 Licensed. See [LICENSE](../../LICENSE).

@@ -104,4 +104,4 @@ module "datadog_rds_enhanced_monitoring_forwarder" {
 
 ## License
 
-Apache-2.0 Licensed. See [LICENSE](LICENSE).
+Apache-2.0 Licensed. See [LICENSE](../../LICENSE).

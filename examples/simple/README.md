@@ -67,3 +67,5 @@ No input.
 | vpc\_fl\_forwarder\_role\_policy\_name | The name of the VPC flow log forwarder lambda role policy |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+Apache-2.0 Licensed. See [LICENSE](../../LICENSE).

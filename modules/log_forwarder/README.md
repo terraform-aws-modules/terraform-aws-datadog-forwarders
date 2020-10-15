@@ -125,4 +125,4 @@ module "datadog_log_forwarder" {
 
 ## License
 
-Apache-2.0 Licensed. See [LICENSE](LICENSE).
+Apache-2.0 Licensed. See [LICENSE](../../LICENSE).
