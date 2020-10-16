@@ -4,14 +4,9 @@ locals {
 
   role_name   = coalesce(var.role_name, var.name)
   policy_name = coalesce(var.policy_name, var.name)
-
-  script_url    = "https://raw.githubusercontent.com/DataDog/datadog-serverless-functions/aws-dd-forwarder-${var.forwarder_version}/aws/rds_enhanced_monitoring/lambda_function.py"
-  script_file   = "${path.module}/lambda_function.py"
-  forwarder_zip = "${path.module}/aws-dd-rds-enhanced-monitoring-forwarder-${var.forwarder_version}.zip"
 }
 
 data "aws_caller_identity" "current" {}
-
 data "aws_region" "current" {}
 
 ################################################################################
@@ -75,32 +70,10 @@ resource "aws_iam_role_policy_attachment" "this" {
 # Forwarder Lambda Function
 ################################################################################
 
-resource "null_resource" "this" {
-  count = var.create ? 1 : 0
-
-  triggers = {
-    on_version_change = var.forwarder_version
-  }
-
-  provisioner "local-exec" {
-    command = "curl --silent -o ${local.script_file} -L '${local.script_url}'"
-  }
-}
-
-data "archive_file" "lambda_zip" {
-  count = var.create ? 1 : 0
-
-  type        = "zip"
-  source_file = local.script_file
-  output_path = local.forwarder_zip
-
-  depends_on = [null_resource.this]
-}
-
 resource "aws_lambda_function" "this" {
   count = var.create ? 1 : 0
 
-  filename      = local.forwarder_zip
+  filename      = "${path.module}/vendored_archives/${var.forwarder_version}.zip"
   function_name = var.name
   handler       = "lambda_function.lambda_handler"
 
@@ -135,8 +108,6 @@ resource "aws_lambda_function" "this" {
   }
 
   tags = merge(var.tags, var.lambda_tags, local.version_tag)
-
-  depends_on = [null_resource.this]
 }
 
 resource "aws_lambda_permission" "cloudwatch" {

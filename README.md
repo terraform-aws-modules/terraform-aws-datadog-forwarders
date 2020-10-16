@@ -25,6 +25,10 @@ There are several factors to keep in mind when working with and/or using this mo
 2. The use of a KMS key to encrypt/decrypt API and APP keys is required by the [`rds_enhanced_monitoring_forwarder`](./modules/rds_enhanced_monitoring_forwarder) and [`vpc_flow_log_forwarder`](./modules/vpc_flow_log_forwarder) modules/functions per the uptream source at [`datadog-serverless-functions`](https://github.com/DataDog/datadog-serverless-functions/tree/master/aws). The creation of a KMS key has been left out of this module so that users are able to better manage their KMS CMK key (and therefore the policies and usage of said key) as they see fit without over-complicating this module.
 3. The roles and their permissions created by this module have several built in conditional checks in order to provide permission sets that allow the desired functionality while following the recommended approach of least privelege access. Nearly all attributes for the IAM roles and their permissions are accessible via inputs - even allowing users to provide their own IAM roles and/or policies to meet their organizational requirements.
 
+## Vendored Artifacts
+
+Due to Terraform not dealing with dynamically created files, especially in ephemeral environments like CI/CD pipelines, the decision was made to vendor the Lambda function artifacts within the VPC Flow Log and RDS Enhanced Monitoring modules to avoid issues. When the upstream artifacts are hosted as zipped archives available on GitHub, similar to the Log Forwarder, then this vendoring hack will be removed in favor of pulling directly from the project.
+
 ## Usage
 
 See [`examples`](./examples) directory for working examples to reference:

@@ -40,9 +40,7 @@ module "datadog_vpc_flow_log_forwarder" {
 
 | Name | Version |
 |------|---------|
-| archive | n/a |
 | aws | >= 3.0, < 4.0 |
-| null | n/a |
 
 ## Inputs
 

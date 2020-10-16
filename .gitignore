@@ -35,4 +35,5 @@ terraform.rc
 
 # Lambda zip archive and scripts
 *.zip
+!/modules/**/vendored_archives/*.zip
 *.py
