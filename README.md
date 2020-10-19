@@ -27,7 +27,7 @@ There are several factors to keep in mind when working with and/or using this mo
 
 ## Vendored Artifacts
 
-Due to Terraform not dealing with dynamically created files, especially in ephemeral environments like CI/CD pipelines, the decision was made to vendor the Lambda function artifacts within the VPC Flow Log and RDS Enhanced Monitoring modules to avoid issues. When the upstream artifacts are hosted as zipped archives available on GitHub, similar to the Log Forwarder, then this vendoring hack will be removed in favor of pulling directly from the project.
+Due to Terraform not dealing with dynamically created files, especially in ephemeral environments like CI/CD pipelines, the decision was made to vendor the Lambda function artifacts within the VPC Flow Log and RDS Enhanced Monitoring modules to avoid issues. When the upstream artifacts are hosted as zipped archives available on GitHub, similar to the Log Forwarder, then this vendoring hack will be removed in favor of pulling directly from the project. Ref [Issue #374](https://github.com/DataDog/datadog-serverless-functions/issues/374)
 
 ## Usage
 
