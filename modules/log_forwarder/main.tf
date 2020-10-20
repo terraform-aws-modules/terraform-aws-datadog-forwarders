@@ -208,7 +208,7 @@ resource "aws_lambda_permission" "cloudwatch" {
 }
 
 resource "aws_lambda_permission" "s3" {
-  count = var.create ? 1 : 0
+  count = var.create && length(var.s3_log_bucket_arns) > 0 ? 1 : 0
 
   statement_id   = "datadog-forwarder-S3Permission"
   action         = "lambda:InvokeFunction"
