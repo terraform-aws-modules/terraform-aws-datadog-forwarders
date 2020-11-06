@@ -1,0 +1,44 @@
+name: test
+
+on:
+  pull_request:
+
+jobs:
+  versionExtract:
+    name: Extract Min/Max Versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Extract Terraform min/max versions
+        id: minMax
+        uses: clowdhaus/terraform-min-max@master
+    outputs:
+      minVersion: ${{ steps.minMax.outputs.minVersion }}
+      maxVersion: ${{ steps.minMax.outputs.maxVersion }}
+
+  versionEvaluate:
+    name: Evaluate Min/Max Versions
+    runs-on: ubuntu-latest
+    needs: versionExtract
+    strategy:
+      matrix:
+        version:
+          - ${{ needs.versionExtract.outputs.minVersion }}
+          - ${{ needs.versionExtract.outputs.maxVersion }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Terraform v${{ matrix.version }}
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ${{ matrix.version }}
+
+      - name: Initialize and validate v${{ matrix.version }}
+        run: |
+          terraform init
+          terraform validate
