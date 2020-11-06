@@ -24,10 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: versionExtract
     strategy:
+      fail-fast: false
       matrix:
         version:
           - ${{ needs.versionExtract.outputs.minVersion }}
           - ${{ needs.versionExtract.outputs.maxVersion }}
+        directory: [examples/complete, examples/simple]
 
     steps:
       - name: Checkout
@@ -40,5 +42,6 @@ jobs:
 
       - name: Initialize and validate v${{ matrix.version }}
         run: |
+          cd ${{ matrix.directory }}
           terraform init
           terraform validate
