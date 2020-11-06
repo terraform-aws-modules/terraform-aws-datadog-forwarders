@@ -14,7 +14,7 @@ jobs:
 
       - name: Extract Terraform min/max versions
         id: minMax
-        uses: clowdhaus/terraform-min-max@master
+        uses: clowdhaus/terraform-min-max@main
     outputs:
       minVersion: ${{ steps.minMax.outputs.minVersion }}
       maxVersion: ${{ steps.minMax.outputs.maxVersion }}
