@@ -53,7 +53,5 @@ module "default" {
   kms_alias             = aws_kms_alias.datadog.name
   dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
 
-  depends_on = [aws_kms_alias.datadog]
-
   tags = { Environment = "test" }
 }

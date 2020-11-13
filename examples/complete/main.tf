@@ -252,7 +252,5 @@ module "default" {
   traces_vpce_security_group_ids = [module.security_group.this_security_group_id]
   traces_vpce_tags               = { TracesVpcEndpoint = true }
 
-  depends_on = [aws_kms_alias.datadog]
-
   tags = { Environment = "test" }
 }
