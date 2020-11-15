@@ -162,7 +162,7 @@ variable "read_cloudwatch_logs" {
 variable "forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.21.3"
+  default     = "3.21.4"
 }
 
 variable "name" {
