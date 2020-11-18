@@ -63,7 +63,7 @@ module "datadog_log_forwarder" {
 | dd\_api\_key\_secret\_arn | The ARN of the Secrets Manager secret storing the Datadog API key, if you already have it stored in Secrets Manager | `string` | `""` | no |
 | dd\_site | Define your Datadog Site to send data to. For the Datadog EU site, set to datadoghq.eu | `string` | `"datadoghq.com"` | no |
 | environment\_variables | A map of environment variables for the forwarder lambda function | `map(string)` | `{}` | no |
-| forwarder\_version | Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.21.4"` | no |
+| forwarder\_version | Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.21.5"` | no |
 | kms\_key\_arn | KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key | `string` | `null` | no |
 | lambda\_tags | A map of tags to apply to the forwarder lambda function | `map(string)` | `{}` | no |
 | layers | List of Lambda Layer Version ARNs (maximum of 5) to attach to the forwarder lambda | `list(string)` | `[]` | no |

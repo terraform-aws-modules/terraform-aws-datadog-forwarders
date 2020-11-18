@@ -51,7 +51,7 @@ module "datadog_vpc_flow_log_forwarder" {
 | dd\_app\_key | The Datadog application key associated with the user account that created it, which can be found from the APIs page | `string` | `""` | no |
 | dd\_site | Define your Datadog Site to send data to. For the Datadog EU site, set to datadoghq.eu | `string` | `"datadoghq.com"` | no |
 | environment\_variables | A map of environment variables for the forwarder lambda function | `map(string)` | `{}` | no |
-| forwarder\_version | VPC flow log monitoring version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.21.4"` | no |
+| forwarder\_version | VPC flow log monitoring version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.21.5"` | no |
 | kms\_alias | Alias of KMS key used to encrypt the Datadog API keys - must start with `alias/` | `string` | n/a | yes |
 | kms\_key\_arn | KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key | `string` | `null` | no |
 | lambda\_tags | A map of tags to apply to the forwarder lambda function | `map(string)` | `{}` | no |
