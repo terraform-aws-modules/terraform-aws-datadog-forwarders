@@ -23,14 +23,14 @@ Note that this example may create resources which will incur monetary charges on
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26, < 0.14 |
-| aws | >= 3.0, < 4.0 |
+| terraform | >= 0.12.26 |
+| aws | >= 3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.0, < 4.0 |
+| aws | >= 3.0 |
 | random | n/a |
 
 ## Inputs

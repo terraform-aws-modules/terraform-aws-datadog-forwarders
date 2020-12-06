@@ -35,14 +35,14 @@ module "datadog_rds_enhanced_monitoring_forwarder" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26, < 0.14 |
-| aws | >= 3.0, < 4.0 |
+| terraform | >= 0.12.26 |
+| aws | >= 3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.0, < 4.0 |
+| aws | >= 3.0 |
 
 ## Inputs
 
