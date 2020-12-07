@@ -134,7 +134,7 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 | log\_forwarder\_timeout | The amount of time the log forwarder lambda has to execute in seconds | `number` | `120` | no |
 | log\_forwarder\_use\_policy\_name\_prefix | Whether to use unique name beginning with the specified `policy_name` for the log forwarder policy | `bool` | `false` | no |
 | log\_forwarder\_use\_role\_name\_prefix | Whether to use unique name beginning with the specified `role_name` for the log forwarder role | `bool` | `false` | no |
-| log\_forwarder\_version | Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.22.0"` | no |
+| log\_forwarder\_version | Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.23.0"` | no |
 | log\_forwarder\_vpce\_policy | Policy to attach to the log forwarder endpoint that controls access to the service. Defaults to full access | `any` | `null` | no |
 | log\_forwarder\_vpce\_security\_group\_ids | IDs of security groups to attach to log forwarder endpoint | `list(string)` | `[]` | no |
 | log\_forwarder\_vpce\_subnet\_ids | IDs of subnets to associate with log forwarder endpoint | `list(string)` | `[]` | no |
@@ -172,7 +172,7 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 | rds\_em\_forwarder\_timeout | The amount of time the RDS enhanced monitoring forwarder lambda has to execute in seconds | `number` | `10` | no |
 | rds\_em\_forwarder\_use\_policy\_name\_prefix | Whether to use unique name beginning with the specified `rds_em_forwarder_policy_name` for the RDS enhanced monitoring forwarder role | `bool` | `false` | no |
 | rds\_em\_forwarder\_use\_role\_name\_prefix | Whether to use unique name beginning with the specified `rds_em_forwarder_role_name` for the RDS enhanced monitoring forwarder role | `bool` | `false` | no |
-| rds\_em\_forwarder\_version | RDS enhanced monitoring lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.22.0"` | no |
+| rds\_em\_forwarder\_version | RDS enhanced monitoring lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.23.0"` | no |
 | tags | A map of tags to use on all resources | `map(string)` | `{}` | no |
 | traces\_vpce\_policy | Policy to attach to the traces endpoint that controls access to the service. Defaults to full access | `any` | `null` | no |
 | traces\_vpce\_security\_group\_ids | IDs of security groups to attach to traces endpoint | `list(string)` | `[]` | no |
@@ -205,7 +205,7 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 | vpc\_fl\_forwarder\_timeout | The amount of time the VPC flow log forwarder lambda has to execute in seconds | `number` | `10` | no |
 | vpc\_fl\_forwarder\_use\_policy\_name\_prefix | Whether to use unique name beginning with the specified `vpc_fl_forwarder_policy_name` for the VPC flow log forwarder role | `bool` | `false` | no |
 | vpc\_fl\_forwarder\_use\_role\_name\_prefix | Whether to use unique name beginning with the specified `vpc_fl_forwarder_role_name` for the VPC flow log forwarder role | `bool` | `false` | no |
-| vpc\_fl\_forwarder\_version | VPC flow log lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.22.0"` | no |
+| vpc\_fl\_forwarder\_version | VPC flow log lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.23.0"` | no |
 | vpc\_id | ID of VPC to provision endpoints within | `string` | `null` | no |
 
 ## Outputs
