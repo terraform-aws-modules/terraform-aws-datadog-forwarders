@@ -105,7 +105,7 @@ variable "policy_path" {
 variable "forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.25.0"
+  default     = "3.26.0"
 }
 
 variable "name" {
