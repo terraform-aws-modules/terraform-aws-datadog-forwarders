@@ -5,7 +5,7 @@ locals {
   role_name   = coalesce(var.role_name, var.name)
   policy_name = coalesce(var.policy_name, var.name)
 
-  dd_api_key = try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")
+  dd_api_key  = try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")
   api_app_key = <<EOF
 {"api_key":"${local.dd_api_key}", "app_key":"${var.dd_app_key}"}
 EOF
@@ -155,4 +155,5 @@ resource "aws_kms_ciphertext" "this" {
 
   key_id    = data.aws_kms_key.this[0].id
   plaintext = var.dd_app_key != "" ? local.api_app_key : local.api_key
+  context   = { LambdaFunctionName = var.name }
 }
