@@ -4,6 +4,19 @@ locals {
 
   role_name   = coalesce(var.role_name, var.name)
   policy_name = coalesce(var.policy_name, var.name)
+
+  api_app_key = <<-EOT
+  {
+    "api_key": ${data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string},
+    "app_key": ${var.dd_app_key}
+  }
+  EOT
+
+  api_key = <<-EOT
+  {
+    "api_key": ${data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string}
+  }
+  EOT
 }
 
 data "aws_caller_identity" "current" {}
@@ -144,12 +157,6 @@ data "aws_secretsmanager_secret_version" "datadog_api_key" {
 resource "aws_kms_ciphertext" "this" {
   count = var.create ? 1 : 0
 
-  key_id = data.aws_kms_key.this[0].id
-
-  plaintext = <<EOF
-{
-  "api_key": ${data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string},
-  "app_key": ${var.dd_app_key}
-}
-EOF
+  key_id    = data.aws_kms_key.this[0].id
+  plaintext = var.dd_app_key != "" ? local.api_app_key : local.api_key
 }
