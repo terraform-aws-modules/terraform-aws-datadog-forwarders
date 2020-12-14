@@ -6,16 +6,11 @@ locals {
   policy_name = coalesce(var.policy_name, var.name)
 
   api_app_key = <<-EOT
-  {
-    "api_key": ${try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")},
-    "app_key": ${var.dd_app_key}
-  }
+  {"api_key": ${try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")}, "app_key": ${var.dd_app_key}}
   EOT
 
   api_key = <<-EOT
-  {
-    "api_key": ${try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")},
-  }
+  {"api_key": ${try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")}}
   EOT
 }
 
