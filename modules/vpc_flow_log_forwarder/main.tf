@@ -7,14 +7,14 @@ locals {
 
   api_app_key = <<-EOT
   {
-    "api_key": ${data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string},
+    "api_key": ${try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")},
     "app_key": ${var.dd_app_key}
   }
   EOT
 
   api_key = <<-EOT
   {
-    "api_key": ${data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string}
+    "api_key": ${try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")},
   }
   EOT
 }
