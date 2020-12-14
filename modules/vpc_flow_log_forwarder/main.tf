@@ -5,12 +5,13 @@ locals {
   role_name   = coalesce(var.role_name, var.name)
   policy_name = coalesce(var.policy_name, var.name)
 
+  dd_api_key = try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")
   api_app_key = <<EOF
-{"api_key":${try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")}, "app_key":${var.dd_app_key}}
+{"api_key":"${local.dd_api_key}", "app_key":"${var.dd_app_key}"}
 EOF
 
   api_key = <<EOF
-{"api_key":${try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")}}
+{"api_key":"${local.dd_api_key}"}
 EOF
 }
 
