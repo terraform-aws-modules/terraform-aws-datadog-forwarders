@@ -52,13 +52,13 @@ data "aws_iam_policy_document" "datadog_cmk" {
 }
 
 resource "aws_kms_alias" "datadog" {
-  name          = "alias/datadog"
+  name          = "alias/datadog/${random_pet.this.id}"
   target_key_id = aws_kms_key.datadog.key_id
 }
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "v2.57.0"
+  version = "~> 2.64"
 
   name = local.name
   cidr = "10.0.0.0/16"
@@ -84,7 +84,7 @@ module "vpc" {
 
 module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> v3.16.0"
+  version = "~> 3.17"
 
   name        = local.name
   description = "Example security group"
@@ -114,7 +114,7 @@ module "security_group" {
 
 module "log_bucket_1" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 1.15"
+  version = "~> 1.17"
 
   bucket                         = "logs-1-${random_pet.this.id}"
   acl                            = "log-delivery-write"
@@ -124,7 +124,7 @@ module "log_bucket_1" {
 
 module "log_bucket_2" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 1.15"
+  version = "~> 1.17"
 
   bucket                         = "logs-2-${random_pet.this.id}"
   acl                            = "log-delivery-write"
@@ -251,8 +251,6 @@ module "default" {
   traces_vpce_subnet_ids         = module.vpc.private_subnets
   traces_vpce_security_group_ids = [module.security_group.this_security_group_id]
   traces_vpce_tags               = { TracesVpcEndpoint = true }
-
-  depends_on = [aws_kms_alias.datadog]
 
   tags = { Environment = "test" }
 }

@@ -27,6 +27,7 @@ Note that this example may create resources which will incur monetary charges on
 | Name | Version |
 |------|---------|
 | aws | >= 3.0 |
+| random | n/a |
 
 ## Inputs
 
