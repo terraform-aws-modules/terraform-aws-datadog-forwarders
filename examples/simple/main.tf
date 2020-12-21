@@ -18,6 +18,10 @@ data "aws_caller_identity" "current" {}
 # Supporting Resources
 ################################################################################
 
+resource "random_pet" "this" {
+  length = 2
+}
+
 resource "aws_kms_key" "datadog" {
   description         = "Datadog KMS CMK"
   enable_key_rotation = true
@@ -39,7 +43,7 @@ data "aws_iam_policy_document" "datadog_cmk" {
 }
 
 resource "aws_kms_alias" "datadog" {
-  name          = "alias/datadog"
+  name          = "alias/datadog/${random_pet.this.id}"
   target_key_id = aws_kms_key.datadog.key_id
 }
 
