@@ -147,7 +147,6 @@ module "default" {
   create_rds_em_forwarder = true
   create_vpc_fl_forwarder = true
 
-  log_forwarder_version                        = "3.20.0"
   log_forwarder_name                           = "complete-datadog-log-forwarder"
   log_forwarder_memory_size                    = 512
   log_forwarder_timeout                        = 60
@@ -180,7 +179,6 @@ module "default" {
   log_forwarder_s3_log_bucket_arns            = [module.log_bucket_1.this_s3_bucket_arn, module.log_bucket_2.this_s3_bucket_arn]
   log_forwarder_tags                          = { LogForwarder = true }
 
-  rds_em_forwarder_version                        = "3.19.0"
   rds_em_forwarder_name                           = "complete-datadog-rds-forwarder"
   rds_em_forwarder_memory_size                    = 512
   rds_em_forwarder_timeout                        = 60
@@ -200,7 +198,6 @@ module "default" {
   rds_em_forwarder_policy_path                    = "/datadog/"
   rds_em_forwarder_tags                           = { RdsForwarder = true }
 
-  vpc_fl_forwarder_version                        = "3.18.0"
   vpc_fl_forwarder_name                           = "complete-datadog-vpc-forwarder"
   vpc_fl_forwarder_memory_size                    = 512
   vpc_fl_forwarder_timeout                        = 60

@@ -61,10 +61,9 @@ module "rds_enhanced_monitoring_forwarder" {
   create = var.create_rds_em_forwarder
 
   forwarder_version     = var.rds_em_forwarder_version
+  dd_api_key            = var.dd_api_key
   dd_api_key_secret_arn = var.dd_api_key_secret_arn
-  dd_app_key            = var.dd_app_key
   dd_site               = var.dd_site
-  kms_alias             = var.kms_alias
 
   name                           = var.rds_em_forwarder_name
   runtime                        = var.rds_em_forwarder_runtime

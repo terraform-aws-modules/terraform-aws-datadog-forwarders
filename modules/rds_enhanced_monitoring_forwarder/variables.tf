@@ -11,8 +11,8 @@ variable "tags" {
 }
 
 # Datadog environment Variables
-variable "dd_app_key" {
-  description = "The Datadog application key associated with the user account that created it, which can be found from the APIs page"
+variable "dd_api_key" {
+  description = "The Datadog API key, which can be found from the APIs page (/account/settings#api). It will be stored in AWS Secrets Manager securely"
   type        = string
   default     = ""
 }
@@ -27,11 +27,6 @@ variable "dd_site" {
   description = "Define your Datadog Site to send data to. For the Datadog EU site, set to datadoghq.eu"
   type        = string
   default     = "datadoghq.com"
-}
-
-variable "kms_alias" {
-  description = "Alias of KMS key used to encrypt the Datadog API keys - must start with `alias/`"
-  type        = string
 }
 
 # Forwarder IAM Role

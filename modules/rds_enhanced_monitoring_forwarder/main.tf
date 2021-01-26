@@ -1,18 +1,12 @@
 locals {
+  dd_api_key            = var.dd_api_key != "" ? { DD_API_KEY = var.dd_api_key } : {}
+  dd_api_key_secret_arn = var.dd_api_key_secret_arn != "" ? { DD_API_KEY_SECRET_ARN = var.dd_api_key_secret_arn } : {}
+
   description = "Lambda function to push RDS Enhanced metrics to Datadog"
   version_tag = { DD_FORWARDER_VERSION = var.forwarder_version }
 
   role_name   = coalesce(var.role_name, var.name)
   policy_name = coalesce(var.policy_name, var.name)
-
-  dd_api_key  = try(data.aws_secretsmanager_secret_version.datadog_api_key[0].secret_string, "")
-  api_app_key = <<EOF
-{"api_key":"${local.dd_api_key}", "app_key":"${var.dd_app_key}"}
-EOF
-
-  api_key = <<EOF
-{"api_key":"${local.dd_api_key}"}
-EOF
 }
 
 data "aws_caller_identity" "current" {}
@@ -62,8 +56,8 @@ resource "aws_iam_policy" "this" {
   policy = templatefile(
     "${path.module}/policy.tmpl",
     {
-      vpc_check = var.subnet_ids != null
-      kms_arn   = data.aws_kms_key.this[0].arn
+      vpc_check             = var.subnet_ids != null
+      dd_api_key_secret_arn = var.dd_api_key_secret_arn
     }
   )
 }
@@ -107,9 +101,10 @@ resource "aws_lambda_function" "this" {
 
   environment {
     variables = merge(
+      local.dd_api_key,
+      local.dd_api_key_secret_arn,
       {
-        DD_SITE          = var.dd_site
-        kmsEncryptedKeys = aws_kms_ciphertext.this[0].ciphertext_blob
+        DD_SITE = var.dd_site
       },
       var.environment_variables,
       local.version_tag
@@ -136,24 +131,4 @@ resource "aws_cloudwatch_log_group" "this" {
   retention_in_days = var.log_retention_days
 
   tags = var.tags
-}
-
-data "aws_kms_key" "this" {
-  count = var.create ? 1 : 0
-
-  key_id = var.kms_alias
-}
-
-data "aws_secretsmanager_secret_version" "datadog_api_key" {
-  count = var.create ? 1 : 0
-
-  secret_id = var.dd_api_key_secret_arn
-}
-
-resource "aws_kms_ciphertext" "this" {
-  count = var.create ? 1 : 0
-
-  key_id    = data.aws_kms_key.this[0].id
-  plaintext = var.dd_app_key != "" ? local.api_app_key : local.api_key
-  context   = { LambdaFunctionName = var.name }
 }
