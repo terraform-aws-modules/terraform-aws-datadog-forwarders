@@ -96,7 +96,7 @@ resource "aws_iam_policy" "this" {
     {
       vpc_check             = var.subnet_ids != null
       s3_check              = length(var.s3_log_bucket_arns) > 0
-      s3_log_bucket_arns    = jsonencode(var.s3_log_bucket_arns)
+      s3_log_bucket_arns    = jsonencode(formatlist("%s/*", var.s3_log_bucket_arns))
       datadog_s3_bucket     = "arn:aws:s3:::${local.bucket_name}"
       dd_api_key_secret_arn = var.dd_api_key_secret_arn
     }
