@@ -167,6 +167,7 @@ resource "aws_lambda_function" "this" {
   reserved_concurrent_executions = var.reserved_concurrent_executions
   kms_key_arn                    = var.kms_key_arn
 
+    
   dynamic "vpc_config" {
     for_each = var.subnet_ids != null && var.security_group_ids != null ? [true] : []
     content {
