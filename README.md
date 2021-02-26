@@ -74,6 +74,20 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 |------|---------|
 | aws | >= 3.0 |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| log_forwarder | ./modules/log_forwarder |  |
+| rds_enhanced_monitoring_forwarder | ./modules/rds_enhanced_monitoring_forwarder |  |
+| vpc_flow_log_forwarder | ./modules/vpc_flow_log_forwarder |  |
+
+## Resources
+
+| Name |
+|------|
+| [aws_vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -234,7 +248,7 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 | log\_forwarder\_lambda\_arn | The ARN of the log forwarder lambda function |
 | log\_forwarder\_lambda\_kms\_key\_arn | (Optional) The ARN for the KMS encryption key for the log forwarder lambda function |
 | log\_forwarder\_lambda\_qualified\_arn | The ARN of the log forwarder lambda function (if versioning is enabled via publish = true) |
-| log\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the log forwarder zip file, provided either via filename or s3\_\* parameters |
+| log\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the log forwarder zip file, provided either via filename or s3\_* parameters |
 | log\_forwarder\_lambda\_version | Latest published version of the log forwarder lambda function |
 | log\_forwarder\_role\_arn | The log forwarder lambda role arn |
 | log\_forwarder\_role\_id | The log forwarder lambda role id |
@@ -266,7 +280,7 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 | rds\_em\_forwarder\_lambda\_arn | The ARN of the RDS enhanced monitoring forwarder lambda function |
 | rds\_em\_forwarder\_lambda\_kms\_key\_arn | (Optional) The ARN for the KMS encryption key for the RDS enhanced monitoring forwarder lambda function |
 | rds\_em\_forwarder\_lambda\_qualified\_arn | The ARN of the RDS enhanced monitoring forwarder lambda function (if versioning is enabled via publish = true) |
-| rds\_em\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the RDS enhanced monitoring lambda forwarder zip file, provided either via filename or s3\_\* parameters |
+| rds\_em\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the RDS enhanced monitoring lambda forwarder zip file, provided either via filename or s3\_* parameters |
 | rds\_em\_forwarder\_lambda\_version | Latest published version of the RDS enhanced monitoring forwarder lambda function |
 | rds\_em\_forwarder\_role\_arn | The RDS enhanced monitoring forwarder lambda role arn |
 | rds\_em\_forwarder\_role\_id | The RDS enhanced monitoring forwarder lambda role id |
@@ -285,7 +299,7 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 | vpc\_fl\_forwarder\_lambda\_arn | The ARN of the VPC flow log forwarder lambda function |
 | vpc\_fl\_forwarder\_lambda\_kms\_key\_arn | (Optional) The ARN for the KMS encryption key for the VPC flow log forwarder lambda function |
 | vpc\_fl\_forwarder\_lambda\_qualified\_arn | The ARN of the VPC flow log forwarder lambda function (if versioning is enabled via publish = true) |
-| vpc\_fl\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the VPC flow log forwarder lambda zip file, provided either via filename or s3\_\* parameters |
+| vpc\_fl\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the VPC flow log forwarder lambda zip file, provided either via filename or s3\_* parameters |
 | vpc\_fl\_forwarder\_lambda\_version | Latest published version of the VPC flow log forwarder lambda function |
 | vpc\_fl\_forwarder\_role\_arn | The VPC flow log forwarder lambda role arn |
 | vpc\_fl\_forwarder\_role\_id | The VPC flow log forwarder lambda role id |
@@ -294,7 +308,6 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 | vpc\_fl\_forwarder\_role\_policy\_id | The ID of the VPC flow log forwarder lambda role policy |
 | vpc\_fl\_forwarder\_role\_policy\_name | The name of the VPC flow log forwarder lambda role policy |
 | vpc\_fl\_forwarder\_role\_unique\_id | The stable and unique string identifying the VPC flow log forwarder lambda role. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## License

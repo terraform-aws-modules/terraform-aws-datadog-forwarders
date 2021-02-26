@@ -51,6 +51,28 @@ module "datadog_log_forwarder" {
 | aws | >= 3.0 |
 | null | n/a |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| this_s3_bucket | terraform-aws-modules/s3-bucket/aws | v1.17.0 |
+
+## Resources
+
+| Name |
+|------|
+| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
+| [aws_cloudwatch_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) |
+| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) |
+| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) |
+| [aws_lambda_function](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function) |
+| [aws_lambda_permission](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission) |
+| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) |
+| [aws_s3_bucket_object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object) |
+| [null_resource](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -104,7 +126,7 @@ module "datadog_log_forwarder" {
 | lambda\_arn | The ARN of the forwarder lambda function |
 | lambda\_kms\_key\_arn | (Optional) The ARN for the KMS encryption key for the forwarder lambda function |
 | lambda\_qualified\_arn | The ARN of the forwarder lambda function (if versioning is enabled via publish = true) |
-| lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the zip file, provided either via filename or s3\_\* parameters |
+| lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the zip file, provided either via filename or s3\_* parameters |
 | lambda\_version | Latest published version of the forwarder lambda function |
 | role\_arn | The forwarder lambda role arn |
 | role\_id | The forwarder lambda role id |
@@ -120,7 +142,6 @@ module "datadog_log_forwarder" {
 | s3\_object\_etag | The ETag generated for the forwarder lambda zip object (an MD5 sum of the object content) |
 | s3\_object\_id | The `key` of the forwarder lambda zip archive |
 | s3\_object\_version | A unique version ID value for the forwarder lambda zip object, if bucket versioning is enabled |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## License

@@ -29,6 +29,23 @@ Note that this example may create resources which will incur monetary charges on
 | aws | >= 3.0 |
 | random | n/a |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| default | ../../ |  |
+
+## Resources
+
+| Name |
+|------|
+| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias) |
+| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) |
+| [aws_secretsmanager_secret](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/secretsmanager_secret) |
+| [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) |
+
 ## Inputs
 
 No input.
@@ -40,7 +57,7 @@ No input.
 | log\_forwarder\_cloudwatch\_log\_group\_arn | The ARN of the log forwarder lambda function CloudWatch log group |
 | log\_forwarder\_lambda\_arn | The ARN of the log forwarder lambda function |
 | log\_forwarder\_lambda\_qualified\_arn | The ARN of the log forwarder lambda function (if versioning is enabled via publish = true) |
-| log\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the log forwarder zip file, provided either via filename or s3\_\* parameters |
+| log\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the log forwarder zip file, provided either via filename or s3\_* parameters |
 | log\_forwarder\_role\_arn | The log forwarder lambda role arn |
 | log\_forwarder\_role\_name | The log forwarder lambda role name |
 | log\_forwarder\_role\_policy\_arn | The ARN of the log forwarder lambda role policy |
@@ -53,7 +70,7 @@ No input.
 | rds\_em\_forwarder\_cloudwatch\_log\_group\_arn | The ARN of the RDS enhanced monitoring forwarder lambda function CloudWatch log group |
 | rds\_em\_forwarder\_lambda\_arn | The ARN of the RDS enhanced monitoring forwarder lambda function |
 | rds\_em\_forwarder\_lambda\_qualified\_arn | The ARN of the RDS enhanced monitoring forwarder lambda function (if versioning is enabled via publish = true) |
-| rds\_em\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the RDS enhanced monitoring lambda forwarder zip file, provided either via filename or s3\_\* parameters |
+| rds\_em\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the RDS enhanced monitoring lambda forwarder zip file, provided either via filename or s3\_* parameters |
 | rds\_em\_forwarder\_role\_arn | The RDS enhanced monitoring forwarder lambda role arn |
 | rds\_em\_forwarder\_role\_name | The RDS enhanced monitoring forwarder lambda role name |
 | rds\_em\_forwarder\_role\_policy\_arn | The ARN of the RDS enhanced monitoring forwarder lambda role policy |
@@ -61,12 +78,11 @@ No input.
 | vpc\_fl\_forwarder\_cloudwatch\_log\_group\_arn | The ARN of the VPC flow log forwarder lambda function CloudWatch log group |
 | vpc\_fl\_forwarder\_lambda\_arn | The ARN of the VPC flow log forwarder lambda function |
 | vpc\_fl\_forwarder\_lambda\_qualified\_arn | The ARN of the VPC flow log forwarder lambda function (if versioning is enabled via publish = true) |
-| vpc\_fl\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the VPC flow log forwarder lambda zip file, provided either via filename or s3\_\* parameters |
+| vpc\_fl\_forwarder\_lambda\_source\_code\_hash | Base64-encoded representation of raw SHA-256 sum of the VPC flow log forwarder lambda zip file, provided either via filename or s3\_* parameters |
 | vpc\_fl\_forwarder\_role\_arn | The VPC flow log forwarder lambda role arn |
 | vpc\_fl\_forwarder\_role\_name | The VPC flow log forwarder lambda role name |
 | vpc\_fl\_forwarder\_role\_policy\_arn | The ARN of the VPC flow log forwarder lambda role policy |
 | vpc\_fl\_forwarder\_role\_policy\_name | The name of the VPC flow log forwarder lambda role policy |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 Apache-2.0 Licensed. See [LICENSE](../../LICENSE).
