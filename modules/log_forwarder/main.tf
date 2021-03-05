@@ -187,6 +187,7 @@ resource "aws_lambda_function" "this" {
         DD_USE_PRIVATE_LINK       = false
         DD_SITE                   = var.dd_site
         DD_S3_BUCKET_NAME         = local.bucket_name
+        DD_TAGS                   = var.dd_tags
       },
       var.environment_variables,
       local.version_tag

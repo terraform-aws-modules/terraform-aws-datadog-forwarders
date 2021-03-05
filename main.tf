@@ -11,6 +11,7 @@ module "log_forwarder" {
   dd_api_key            = var.dd_api_key
   dd_api_key_secret_arn = var.dd_api_key_secret_arn
   dd_site               = var.dd_site
+  dd_tags               = var.dd_tags
 
   name                           = var.log_forwarder_name
   runtime                        = var.log_forwarder_runtime

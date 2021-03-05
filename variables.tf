@@ -29,6 +29,12 @@ variable "dd_site" {
   default     = "datadoghq.com"
 }
 
+variable "dd_tags" {
+  description = "Define your Datadog Tags list of comma separated strings. Ensure your tags are a comma separated list of strings with no trailing comma"
+  type        = string
+  default     = ""
+}
+
 variable "kms_alias" {
   description = "Alias of KMS key used to encrypt the Datadog API keys - must start with `alias/`"
   type        = string

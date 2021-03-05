@@ -29,6 +29,12 @@ variable "dd_site" {
   default     = "datadoghq.com"
 }
 
+variable "dd_tags" {
+  description = "Define your Datadog Tags list of comma separated strings. Ensure your tags are a comma separated list of strings with no trailing comma"
+  type        = string
+  default     = ""
+}
+
 # S3 Forwarder Bucket
 variable "create_bucket" {
   description = "Controls whether an S3 bucket should be created for the forwarder"
