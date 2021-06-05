@@ -30,14 +30,14 @@ Note that this example may create resources which will incur monetary charges on
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.25.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.0.1 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_default"></a> [default](#module\_default) | ../../ |  |
+| <a name="module_default"></a> [default](#module\_default) | ../../ | n/a |
 | <a name="module_log_bucket_1"></a> [log\_bucket\_1](#module\_log\_bucket\_1) | terraform-aws-modules/s3-bucket/aws | ~> 1.17 |
 | <a name="module_log_bucket_2"></a> [log\_bucket\_2](#module\_log\_bucket\_2) | terraform-aws-modules/s3-bucket/aws | ~> 1.17 |
 | <a name="module_security_group"></a> [security\_group](#module\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.17 |
