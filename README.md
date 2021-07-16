@@ -105,6 +105,7 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 | <a name="input_api_vpce_security_group_ids"></a> [api\_vpce\_security\_group\_ids](#input\_api\_vpce\_security\_group\_ids) | IDs of security groups to attach to API endpoint | `list(string)` | `[]` | no |
 | <a name="input_api_vpce_subnet_ids"></a> [api\_vpce\_subnet\_ids](#input\_api\_vpce\_subnet\_ids) | IDs of subnets to associate with API endpoint | `list(string)` | `[]` | no |
 | <a name="input_api_vpce_tags"></a> [api\_vpce\_tags](#input\_api\_vpce\_tags) | A map of tags to apply to the API endpoint | `map(string)` | `{}` | no |
+| <a name="input_bucket_attach_deny_insecure_transport_policy"></a> [bucket\_attach\_deny\_insecure\_transport\_policy](#input\_bucket\_attach\_deny\_insecure\_transport\_policy) | Controls if S3 bucket should have deny non-SSL transport policy attacheds | `bool` | `false` | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | Lambda artifact S3 bucket name | `string` | `""` | no |
 | <a name="input_create_agent_vpce"></a> [create\_agent\_vpce](#input\_create\_agent\_vpce) | Controls whether an agent endpoint should be created | `bool` | `false` | no |
 | <a name="input_create_api_vpce"></a> [create\_api\_vpce](#input\_create\_api\_vpce) | Controls whether a API endpoint should be created | `bool` | `false` | no |

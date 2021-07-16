@@ -26,9 +26,11 @@ module "log_forwarder" {
   lambda_tags                    = var.log_forwarder_lambda_tags
   log_retention_days             = var.log_forwarder_log_retention_days
 
-  create_bucket                 = var.create_bucket
-  bucket_name                   = var.bucket_name
-  bucket_prefix                 = var.log_forwarder_bucket_prefix
+  create_bucket                                = var.create_bucket
+  bucket_name                                  = var.bucket_name
+  bucket_prefix                                = var.log_forwarder_bucket_prefix
+  bucket_attach_deny_insecure_transport_policy = var.bucket_attach_deny_insecure_transport_policy
+
   s3_zip_storage_class          = var.log_forwarder_s3_zip_storage_class
   s3_zip_server_side_encryption = var.log_forwarder_s3_zip_server_side_encryption
   s3_zip_kms_key_id             = var.log_forwarder_s3_zip_kms_key_id

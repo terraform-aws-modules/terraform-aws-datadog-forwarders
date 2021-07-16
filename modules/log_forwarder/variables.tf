@@ -42,6 +42,12 @@ variable "bucket_name" {
   default     = ""
 }
 
+variable "bucket_attach_deny_insecure_transport_policy" {
+  description = "Controls if S3 bucket should have deny non-SSL transport policy attacheds"
+  type        = bool
+  default     = false
+}
+
 # Forwarder S3 Zip Objcet
 variable "bucket_prefix" {
   description = "S3 object key prefix to prepend to zip archive name"

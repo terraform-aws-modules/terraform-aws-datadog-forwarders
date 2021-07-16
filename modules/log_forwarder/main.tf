@@ -24,11 +24,13 @@ data "aws_region" "current" {}
 
 module "this_s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "v1.25.0"
+  version = "v2.6.0"
 
   create_bucket = var.create && var.create_bucket
   bucket        = local.bucket_name
   force_destroy = true
+
+  attach_deny_insecure_transport_policy = var.bucket_attach_deny_insecure_transport_policy
 
   block_public_acls       = true
   block_public_policy     = true
@@ -129,7 +131,7 @@ resource "null_resource" "this" {
 resource "aws_s3_bucket_object" "this" {
   count = var.create ? 1 : 0
 
-  bucket = var.create_bucket ? module.this_s3_bucket.this_s3_bucket_id : var.bucket_name
+  bucket = var.create_bucket ? module.this_s3_bucket.s3_bucket_id : var.bucket_name
   key    = join("/", compact([var.bucket_prefix, local.zip_name]))
   source = local.forwarder_zip
 
@@ -150,7 +152,7 @@ resource "aws_s3_bucket_object" "this" {
 resource "aws_lambda_function" "this" {
   count = var.create ? 1 : 0
 
-  s3_bucket         = var.create_bucket ? module.this_s3_bucket.this_s3_bucket_id : var.bucket_name
+  s3_bucket         = var.create_bucket ? module.this_s3_bucket.s3_bucket_id : var.bucket_name
   s3_key            = aws_s3_bucket_object.this[0].key
   s3_object_version = aws_s3_bucket_object.this[0].version_id
   function_name     = var.name
