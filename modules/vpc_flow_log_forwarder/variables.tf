@@ -117,7 +117,7 @@ variable "read_cloudwatch_logs" {
 variable "forwarder_version" {
   description = "VPC flow log monitoring version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.34.0"
+  default     = "3.35.0"
 }
 
 variable "name" {
@@ -129,7 +129,7 @@ variable "name" {
 variable "runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python2.7"
+  default     = "python3.7"
 }
 
 variable "layers" {
