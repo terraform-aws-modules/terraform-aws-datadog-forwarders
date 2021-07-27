@@ -156,6 +156,9 @@ data "aws_iam_policy_document" "custom" {
       "logs:CreateLogStream",
       "tag:GetResources",
       "logs:PutLogEvents",
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DeleteNetworkInterface"
     ]
     resources = ["*"]
   }
@@ -205,6 +208,7 @@ module "default" {
   create_vpc_fl_forwarder = true
 
   log_forwarder_name                           = "complete-datadog-log-forwarder"
+  create_log_forwarder_role_policy             = false
   log_forwarder_policy_arn                     = aws_iam_policy.custom.arn
   log_forwarder_memory_size                    = 512
   log_forwarder_timeout                        = 60
