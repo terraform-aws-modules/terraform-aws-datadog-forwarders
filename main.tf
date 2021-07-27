@@ -37,6 +37,7 @@ module "log_forwarder" {
   s3_zip_metadata               = var.log_forwarder_s3_zip_metadata
   s3_zip_tags                   = var.log_forwarder_s3_zip_tags
 
+  create_role               = var.create_log_forwarder_role
   role_arn                  = var.log_forwarder_role_arn
   role_name                 = var.log_forwarder_role_name
   use_role_name_prefix      = var.log_forwarder_use_role_name_prefix
@@ -44,6 +45,7 @@ module "log_forwarder" {
   role_max_session_duration = var.log_forwarder_role_max_session_duration
   role_permissions_boundary = var.log_forwarder_role_permissions_boundary
   role_tags                 = var.log_forwarder_role_tags
+  create_role_policy        = var.create_log_forwarder_role_policy
   policy_arn                = var.log_forwarder_policy_arn
   policy_name               = var.log_forwarder_policy_name
   use_policy_name_prefix    = var.log_forwarder_use_policy_name_prefix
@@ -81,6 +83,7 @@ module "rds_enhanced_monitoring_forwarder" {
   lambda_tags                    = var.rds_em_forwarder_lambda_tags
   log_retention_days             = var.rds_em_forwarder_log_retention_days
 
+  create_role               = var.create_rds_em_forwarder_role
   role_arn                  = var.rds_em_forwarder_role_arn
   role_name                 = var.rds_em_forwarder_role_name
   use_role_name_prefix      = var.rds_em_forwarder_use_role_name_prefix
@@ -88,6 +91,7 @@ module "rds_enhanced_monitoring_forwarder" {
   role_max_session_duration = var.rds_em_forwarder_role_max_session_duration
   role_permissions_boundary = var.rds_em_forwarder_role_permissions_boundary
   role_tags                 = var.rds_em_forwarder_role_tags
+  create_role_policy        = var.create_rds_em_forwarder_role_policy
   policy_arn                = var.rds_em_forwarder_policy_arn
   policy_name               = var.rds_em_forwarder_policy_name
   use_policy_name_prefix    = var.rds_em_forwarder_use_policy_name_prefix
@@ -125,6 +129,7 @@ module "vpc_flow_log_forwarder" {
   lambda_tags                    = var.vpc_fl_forwarder_lambda_tags
   log_retention_days             = var.vpc_fl_forwarder_log_retention_days
 
+  create_role               = var.create_vpc_fl_forwarder_role
   role_arn                  = var.vpc_fl_forwarder_role_arn
   role_name                 = var.vpc_fl_forwarder_role_name
   use_role_name_prefix      = var.vpc_fl_forwarder_use_role_name_prefix
@@ -132,6 +137,7 @@ module "vpc_flow_log_forwarder" {
   role_max_session_duration = var.vpc_fl_forwarder_role_max_session_duration
   role_permissions_boundary = var.vpc_fl_forwarder_role_permissions_boundary
   role_tags                 = var.vpc_fl_forwarder_role_tags
+  create_role_policy        = var.create_vpc_fl_forwarder_role_policy
   policy_arn                = var.vpc_fl_forwarder_policy_arn
   policy_name               = var.vpc_fl_forwarder_policy_name
   use_policy_name_prefix    = var.vpc_fl_forwarder_use_policy_name_prefix

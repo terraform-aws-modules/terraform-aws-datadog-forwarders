@@ -70,7 +70,7 @@ data "aws_iam_policy_document" "this" {
 }
 
 resource "aws_iam_role" "this" {
-  count = var.create && var.role_arn == "" ? 1 : 0
+  count = var.create && var.create_role ? 1 : 0
 
   name        = var.use_role_name_prefix ? null : local.role_name
   name_prefix = var.use_role_name_prefix ? "${local.role_name}-" : null
@@ -86,7 +86,7 @@ resource "aws_iam_role" "this" {
 }
 
 resource "aws_iam_policy" "this" {
-  count = var.create && var.policy_arn == "" ? 1 : 0
+  count = var.create && var.create_role_policy ? 1 : 0
 
   name        = var.use_policy_name_prefix ? null : local.policy_name
   name_prefix = var.use_policy_name_prefix ? "${local.policy_name}-" : null
@@ -106,10 +106,10 @@ resource "aws_iam_policy" "this" {
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
-  count = var.create && var.role_arn == "" ? 1 : 0
+  count = var.create && var.create_role ? 1 : 0
 
   role       = aws_iam_role.this[0].id
-  policy_arn = var.policy_arn != "" ? var.policy_arn : aws_iam_policy.this[0].id
+  policy_arn = var.create_role_policy ? aws_iam_policy.this[0].id : var.policy_arn
 }
 
 ################################################################################
@@ -158,7 +158,7 @@ resource "aws_lambda_function" "this" {
   function_name     = var.name
   handler           = "lambda_function.lambda_handler"
 
-  role        = var.role_arn != "" ? var.role_arn : aws_iam_role.this[0].arn
+  role        = var.create_role ? aws_iam_role.this[0].arn : var.role_arn
   description = local.description
   runtime     = var.runtime
   layers      = var.layers

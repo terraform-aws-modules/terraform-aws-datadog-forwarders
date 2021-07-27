@@ -35,10 +35,16 @@ variable "kms_alias" {
 }
 
 # Forwarder IAM Role
+variable "create_role" {
+  description = "Controls whether an IAM role is created for the forwarder"
+  type        = bool
+  default     = true
+}
+
 variable "role_arn" {
   description = "IAM role arn for forwarder lambda function to utilize"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "role_name" {
@@ -77,10 +83,16 @@ variable "role_tags" {
   default     = {}
 }
 
+variable "create_role_policy" {
+  description = "Controls whether an IAM role policy is created for the forwarder"
+  type        = bool
+  default     = true
+}
+
 variable "policy_arn" {
   description = "IAM policy arn for forwarder lambda function to utilize"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "policy_name" {

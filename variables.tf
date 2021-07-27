@@ -91,10 +91,16 @@ variable "log_forwarder_s3_zip_tags" {
 }
 
 # Log Forwarder IAM Role
+variable "create_log_forwarder_role" {
+  description = "Controls whether an IAM role is created for the log forwarder"
+  type        = bool
+  default     = true
+}
+
 variable "log_forwarder_role_arn" {
   description = "IAM role arn for log forwarder lambda function to utilize"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "log_forwarder_role_name" {
@@ -133,10 +139,16 @@ variable "log_forwarder_role_tags" {
   default     = {}
 }
 
+variable "create_log_forwarder_role_policy" {
+  description = "Controls whether an IAM role policy is created for the log forwarder"
+  type        = bool
+  default     = true
+}
+
 variable "log_forwarder_policy_arn" {
   description = "IAM policy arn for log forwarder lambda function to utilize"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "log_forwarder_policy_name" {
@@ -261,10 +273,16 @@ variable "log_forwarder_log_retention_days" {
 }
 
 # RDS Enhanced Monitoring Forwarder IAM Role
+variable "create_rds_em_forwarder_role" {
+  description = "Controls whether an IAM role is created for the RDS enhanced monitoring forwarder"
+  type        = bool
+  default     = true
+}
+
 variable "rds_em_forwarder_role_arn" {
   description = "IAM role arn for RDS enhanced monitoring forwarder lambda function to utilize"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "rds_em_forwarder_role_name" {
@@ -303,10 +321,16 @@ variable "rds_em_forwarder_role_tags" {
   default     = {}
 }
 
+variable "create_rds_em_forwarder_role_policy" {
+  description = "Controls whether an IAM role policy is created for the RDS enhanced monitoring forwarder"
+  type        = bool
+  default     = true
+}
+
 variable "rds_em_forwarder_policy_arn" {
   description = "IAM policy arn for RDS enhanced monitoring forwarder lambda function to utilize"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "rds_em_forwarder_policy_name" {
@@ -425,10 +449,16 @@ variable "rds_em_forwarder_log_retention_days" {
 }
 
 # VPC Flow Log Forwarder IAM Role
+variable "create_vpc_fl_forwarder_role" {
+  description = "Controls whether an IAM role is created for the VPC flow log forwarder"
+  type        = bool
+  default     = true
+}
+
 variable "vpc_fl_forwarder_role_arn" {
   description = "IAM role arn for VPC flow log forwarder lambda function to utilize"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "vpc_fl_forwarder_role_name" {
@@ -467,10 +497,16 @@ variable "vpc_fl_forwarder_role_tags" {
   default     = {}
 }
 
+variable "create_vpc_fl_forwarder_role_policy" {
+  description = "Controls whether an IAM role policy is created for the VPC flow log forwarder"
+  type        = bool
+  default     = true
+}
+
 variable "vpc_fl_forwarder_policy_arn" {
   description = "IAM policy arn for VPC flow log forwarder lambda function to utilize"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "vpc_fl_forwarder_policy_name" {

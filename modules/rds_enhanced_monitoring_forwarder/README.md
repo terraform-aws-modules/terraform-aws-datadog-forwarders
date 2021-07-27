@@ -67,6 +67,8 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_create"></a> [create](#input\_create) | Controls whether the forwarder resources should be created | `bool` | `true` | no |
+| <a name="input_create_role"></a> [create\_role](#input\_create\_role) | Controls whether an IAM role is created for the forwarder | `bool` | `true` | no |
+| <a name="input_create_role_policy"></a> [create\_role\_policy](#input\_create\_role\_policy) | Controls whether an IAM role policy is created for the forwarder | `bool` | `true` | no |
 | <a name="input_dd_api_key"></a> [dd\_api\_key](#input\_dd\_api\_key) | The Datadog API key, which can be found from the APIs page (/account/settings#api). It will be stored in AWS Secrets Manager securely | `string` | `""` | no |
 | <a name="input_dd_api_key_secret_arn"></a> [dd\_api\_key\_secret\_arn](#input\_dd\_api\_key\_secret\_arn) | The ARN of the Secrets Manager secret storing the Datadog API key, if you already have it stored in Secrets Manager | `string` | `""` | no |
 | <a name="input_dd_site"></a> [dd\_site](#input\_dd\_site) | Define your Datadog Site to send data to. For the Datadog EU site, set to datadoghq.eu | `string` | `"datadoghq.com"` | no |
@@ -78,12 +80,12 @@ No modules.
 | <a name="input_log_retention_days"></a> [log\_retention\_days](#input\_log\_retention\_days) | Forwarder CloudWatch log group retention in days | `number` | `7` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Memory size for the forwarder lambda function | `number` | `256` | no |
 | <a name="input_name"></a> [name](#input\_name) | Forwarder lambda name | `string` | `"datadog-rds-enhanced-monitoring-forwarder"` | no |
-| <a name="input_policy_arn"></a> [policy\_arn](#input\_policy\_arn) | IAM policy arn for forwarder lambda function to utilize | `string` | `""` | no |
+| <a name="input_policy_arn"></a> [policy\_arn](#input\_policy\_arn) | IAM policy arn for forwarder lambda function to utilize | `string` | `null` | no |
 | <a name="input_policy_name"></a> [policy\_name](#input\_policy\_name) | Forwarder policy name | `string` | `""` | no |
 | <a name="input_policy_path"></a> [policy\_path](#input\_policy\_path) | Forwarder policy path | `string` | `null` | no |
 | <a name="input_publish"></a> [publish](#input\_publish) | Whether to publish creation/change as a new Lambda Function Version | `bool` | `false` | no |
 | <a name="input_reserved_concurrent_executions"></a> [reserved\_concurrent\_executions](#input\_reserved\_concurrent\_executions) | The amount of reserved concurrent executions for the forwarder lambda function | `number` | `10` | no |
-| <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | IAM role arn for forwarder lambda function to utilize | `string` | `""` | no |
+| <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | IAM role arn for forwarder lambda function to utilize | `string` | `null` | no |
 | <a name="input_role_max_session_duration"></a> [role\_max\_session\_duration](#input\_role\_max\_session\_duration) | The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. | `number` | `null` | no |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Forwarder role name | `string` | `""` | no |
 | <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Forwarder role path | `string` | `null` | no |

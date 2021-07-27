@@ -58,7 +58,7 @@ resource "aws_kms_alias" "datadog" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 2.64"
+  version = "~> 3.2"
 
   name = local.name
   cidr = "10.0.0.0/16"
@@ -73,18 +73,30 @@ module "vpc" {
   # Required for VPC Endpoints
   enable_dns_hostnames = true
   enable_dns_support   = true
+}
 
-  enable_s3_endpoint = true
+module "vpc_endpoints" {
+  source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
+  version = "~> 3.2"
 
-  enable_secretsmanager_endpoint              = true
-  secretsmanager_endpoint_private_dns_enabled = true
-  secretsmanager_endpoint_subnet_ids          = module.vpc.private_subnets
-  secretsmanager_endpoint_security_group_ids  = [module.security_group.this_security_group_id]
+  vpc_id             = module.vpc.vpc_id
+  security_group_ids = [module.security_group.security_group_id]
+
+  endpoints = {
+    s3 = {
+      service = "s3"
+    },
+    secretsmanager = {
+      service             = "secretsmanager"
+      private_dns_enabled = true
+      subnet_ids          = module.vpc.private_subnets
+    },
+  }
 }
 
 module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 3.17"
+  version = "~> 4.3"
 
   name        = local.name
   description = "Example security group"
@@ -114,7 +126,7 @@ module "security_group" {
 
 module "log_bucket_1" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 1.17"
+  version = "~> 2.6"
 
   bucket                         = "logs-1-${random_pet.this.id}"
   acl                            = "log-delivery-write"
@@ -124,7 +136,7 @@ module "log_bucket_1" {
 
 module "log_bucket_2" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 1.17"
+  version = "~> 2.6"
 
   bucket                         = "logs-2-${random_pet.this.id}"
   acl                            = "log-delivery-write"
@@ -135,6 +147,51 @@ module "log_bucket_2" {
 ################################################################################
 # Module
 ################################################################################
+
+data "aws_iam_policy_document" "custom" {
+  statement {
+    sid = "AnyResourceAccess"
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "tag:GetResources",
+      "logs:PutLogEvents",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    sid = "DatadogBucketFullAccess"
+    actions = [
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:DeleteObject",
+      "s3:ListBucket",
+    ]
+    resources = [
+      module.log_bucket_1.s3_bucket_arn,
+      "${module.log_bucket_1.s3_bucket_arn}/*"
+    ]
+  }
+
+  statement {
+    sid = "GetApiKeySecret"
+    actions = [
+      "secretsmanager:GetSecretValue",
+    ]
+    resources = [
+      data.aws_secretsmanager_secret.datadog_api_key.arn
+    ]
+  }
+}
+
+resource "aws_iam_policy" "custom" {
+  name        = "custom-datadog-log-forwarder"
+  path        = "/"
+  description = "Lambda function to push logs, metrics, and traces to Datadog"
+
+  policy = data.aws_iam_policy_document.custom.json
+}
 
 module "default" {
   source = "../../"
@@ -148,13 +205,14 @@ module "default" {
   create_vpc_fl_forwarder = true
 
   log_forwarder_name                           = "complete-datadog-log-forwarder"
+  log_forwarder_policy_arn                     = aws_iam_policy.custom.arn
   log_forwarder_memory_size                    = 512
   log_forwarder_timeout                        = 60
   log_forwarder_publish                        = true
   log_forwarder_reserved_concurrent_executions = 10
   log_forwarder_kms_key_arn                    = aws_kms_alias.datadog.target_key_arn
   log_forwarder_subnet_ids                     = module.vpc.private_subnets
-  log_forwarder_security_group_ids             = [module.security_group.this_security_group_id]
+  log_forwarder_security_group_ids             = [module.security_group.security_group_id]
   log_forwarder_environment_variables = {
     REDACT_IP                     = true
     REDACT_EMAIL                  = true
@@ -174,9 +232,7 @@ module "default" {
   log_forwarder_role_path                     = "/datadog/"
   log_forwarder_role_max_session_duration     = 3900
   log_forwarder_role_tags                     = { ForwarderRole = true }
-  log_forwarder_use_policy_name_prefix        = true
-  log_forwarder_policy_path                   = "/datadog/"
-  log_forwarder_s3_log_bucket_arns            = [module.log_bucket_1.this_s3_bucket_arn, module.log_bucket_2.this_s3_bucket_arn]
+  log_forwarder_s3_log_bucket_arns            = [module.log_bucket_1.s3_bucket_arn, module.log_bucket_2.s3_bucket_arn]
   log_forwarder_tags                          = { LogForwarder = true }
 
   rds_em_forwarder_name                           = "complete-datadog-rds-forwarder"
@@ -186,7 +242,7 @@ module "default" {
   rds_em_forwarder_reserved_concurrent_executions = 10
   rds_em_forwarder_kms_key_arn                    = aws_kms_alias.datadog.target_key_arn
   rds_em_forwarder_subnet_ids                     = module.vpc.private_subnets
-  rds_em_forwarder_security_group_ids             = [module.security_group.this_security_group_id]
+  rds_em_forwarder_security_group_ids             = [module.security_group.security_group_id]
   rds_em_forwarder_environment_variables          = {}
   rds_em_forwarder_lambda_tags                    = { RdsForwarderLambda = true }
   rds_em_forwarder_log_retention_days             = 3
@@ -205,7 +261,7 @@ module "default" {
   vpc_fl_forwarder_reserved_concurrent_executions = 10
   vpc_fl_forwarder_kms_key_arn                    = aws_kms_alias.datadog.target_key_arn
   vpc_fl_forwarder_subnet_ids                     = module.vpc.private_subnets
-  vpc_fl_forwarder_security_group_ids             = [module.security_group.this_security_group_id]
+  vpc_fl_forwarder_security_group_ids             = [module.security_group.security_group_id]
   vpc_fl_forwarder_environment_variables          = {}
   vpc_fl_forwarder_lambda_tags                    = { VpcForwarderLambda = true }
   vpc_fl_forwarder_log_retention_days             = 3
@@ -221,32 +277,32 @@ module "default" {
 
   create_metrics_vpce             = true
   metrics_vpce_subnet_ids         = module.vpc.private_subnets
-  metrics_vpce_security_group_ids = [module.security_group.this_security_group_id]
+  metrics_vpce_security_group_ids = [module.security_group.security_group_id]
   metrics_vpce_tags               = { MetricsVpcEndpoint = true }
 
   create_agent_vpce             = true
   agent_vpce_subnet_ids         = module.vpc.private_subnets
-  agent_vpce_security_group_ids = [module.security_group.this_security_group_id]
+  agent_vpce_security_group_ids = [module.security_group.security_group_id]
   agent_vpce_tags               = { AgentVpcEndpoint = true }
 
   create_log_forwarder_vpce             = true
   log_forwarder_vpce_subnet_ids         = module.vpc.private_subnets
-  log_forwarder_vpce_security_group_ids = [module.security_group.this_security_group_id]
+  log_forwarder_vpce_security_group_ids = [module.security_group.security_group_id]
   log_forwarder_vpce_tags               = { LogForwarderVpcEndpoint = true }
 
   create_api_vpce             = true
   api_vpce_subnet_ids         = module.vpc.private_subnets
-  api_vpce_security_group_ids = [module.security_group.this_security_group_id]
+  api_vpce_security_group_ids = [module.security_group.security_group_id]
   api_vpce_tags               = { ApiVpcEndpoint = true }
 
   create_processes_vpce             = true
   processes_vpce_subnet_ids         = module.vpc.private_subnets
-  processes_vpce_security_group_ids = [module.security_group.this_security_group_id]
+  processes_vpce_security_group_ids = [module.security_group.security_group_id]
   processes_vpce_tags               = { ProcessesVpcEndpoint = true }
 
   create_traces_vpce             = true
   traces_vpce_subnet_ids         = module.vpc.private_subnets
-  traces_vpce_security_group_ids = [module.security_group.this_security_group_id]
+  traces_vpce_security_group_ids = [module.security_group.security_group_id]
   traces_vpce_tags               = { TracesVpcEndpoint = true }
 
   tags = { Environment = "test" }
