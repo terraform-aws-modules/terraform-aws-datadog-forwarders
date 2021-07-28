@@ -69,6 +69,8 @@ resource "aws_iam_policy" "this" {
       kms_arn            = data.aws_kms_key.this[0].arn
     }
   )
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "this" {

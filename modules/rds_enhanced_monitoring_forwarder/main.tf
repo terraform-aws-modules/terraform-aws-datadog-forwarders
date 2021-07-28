@@ -60,6 +60,8 @@ resource "aws_iam_policy" "this" {
       dd_api_key_secret_arn = var.dd_api_key_secret_arn
     }
   )
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
