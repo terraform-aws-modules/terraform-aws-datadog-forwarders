@@ -15,6 +15,12 @@
       "Sid": "AnyResourceAccess"
     },
     {
+      "Action": "kms:Decrypt",
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "KmsDecrypt"
+    },
+    {
       "Action": [
         "s3:GetObject",
         "s3:PutObject",

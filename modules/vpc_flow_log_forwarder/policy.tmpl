@@ -18,12 +18,12 @@
       "Effect": "Allow",
       "Resource": ${s3_log_bucket_arns},
       "Sid": "ReadS3Logs"
-    }%{ endif }%{ if kms_arn != "" },
+    }%{ endif },
     {
       "Action": "kms:Decrypt",
       "Effect": "Allow",
-      "Resource": "${kms_arn}",
-      "Sid": "DecryptKeys"
-    }%{ endif }
+      "Resource": "*",
+      "Sid": "KmsDecrypt"
+    }
   ]
 }

@@ -12,6 +12,12 @@
       "Effect": "Allow",
       "Resource": "*",
       "Sid": "WriteLogs"
+    },
+    {
+      "Action": "kms:Decrypt",
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "KmsDecrypt"
     }%{ if dd_api_key_secret_arn != "" },
     {
       "Action": "secretsmanager:GetSecretValue",
