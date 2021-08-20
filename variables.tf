@@ -179,7 +179,7 @@ variable "log_forwarder_s3_log_bucket_arns" {
 variable "log_forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.37.0"
+  default     = "3.38.0"
 }
 
 variable "create_log_forwarder" {
@@ -355,7 +355,7 @@ variable "rds_em_forwarder_policy_path" {
 variable "rds_em_forwarder_version" {
   description = "RDS enhanced monitoring lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.37.0"
+  default     = "3.38.0"
 }
 
 variable "create_rds_em_forwarder" {
@@ -543,7 +543,7 @@ variable "vpc_fl_forwarder_read_cloudwatch_logs" {
 variable "vpc_fl_forwarder_version" {
   description = "VPC flow log lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.37.0"
+  default     = "3.38.0"
 }
 
 variable "create_vpc_fl_forwarder" {
