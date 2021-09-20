@@ -9,6 +9,11 @@ provider "aws" {
 
 locals {
   name = "datadog-forwarders-complete-example"
+
+  tags = {
+    Example     = local.name
+    Environment = "dev"
+  }
 }
 
 # Note: you will need to create this secret manually prior to running
@@ -35,6 +40,8 @@ resource "aws_kms_key" "datadog" {
   description         = "Datadog KMS CMK"
   enable_key_rotation = true
   policy              = data.aws_iam_policy_document.datadog_cmk.json
+
+  tags = local.tags
 }
 
 data "aws_iam_policy_document" "datadog_cmk" {
@@ -58,7 +65,7 @@ resource "aws_kms_alias" "datadog" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 3.2"
+  version = "~> 3"
 
   name = local.name
   cidr = "10.0.0.0/16"
@@ -67,12 +74,26 @@ module "vpc" {
   private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
-  enable_nat_gateway = true
-  single_nat_gateway = true
+  enable_nat_gateway      = false # not required, using private VPC endpoint
+  single_nat_gateway      = true
+  map_public_ip_on_launch = false
+
+  manage_default_security_group  = true
+  default_security_group_ingress = []
+  default_security_group_egress  = []
+
+  enable_flow_log                      = true
+  flow_log_destination_type            = "cloud-watch-logs"
+  create_flow_log_cloudwatch_log_group = true
+  create_flow_log_cloudwatch_iam_role  = true
+  flow_log_max_aggregation_interval    = 60
+  flow_log_log_format                  = "$${version} $${account-id} $${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport} $${protocol} $${packets} $${bytes} $${start} $${end} $${action} $${log-status} $${vpc-id} $${subnet-id} $${instance-id} $${tcp-flags} $${type} $${pkt-srcaddr} $${pkt-dstaddr} $${region} $${az-id} $${sublocation-type} $${sublocation-id}"
 
   # Required for VPC Endpoints
   enable_dns_hostnames = true
   enable_dns_support   = true
+
+  tags = local.tags
 }
 
 module "vpc_endpoints" {
@@ -92,11 +113,13 @@ module "vpc_endpoints" {
       subnet_ids          = module.vpc.private_subnets
     },
   }
+
+  tags = local.tags
 }
 
 module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.3"
+  version = "~> 4"
 
   name        = local.name
   description = "Example security group"
@@ -121,27 +144,62 @@ module "security_group" {
 
   egress_cidr_blocks = ["0.0.0.0/0"]
   egress_rules       = ["all-all"]
-}
 
+  tags = local.tags
+}
 
 module "log_bucket_1" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 2.6"
+  version = "~> 2"
 
-  bucket                         = "logs-1-${random_pet.this.id}"
-  acl                            = "log-delivery-write"
-  force_destroy                  = true
-  attach_elb_log_delivery_policy = true
+  bucket        = "logs-1-${random_pet.this.id}"
+  force_destroy = true
+
+  acl                                   = "log-delivery-write"
+  attach_elb_log_delivery_policy        = true
+  attach_deny_insecure_transport_policy = true
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+
+  server_side_encryption_configuration = {
+    rule = {
+      apply_server_side_encryption_by_default = {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  tags = local.tags
 }
 
 module "log_bucket_2" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 2.6"
+  version = "~> 2"
 
-  bucket                         = "logs-2-${random_pet.this.id}"
-  acl                            = "log-delivery-write"
-  force_destroy                  = true
-  attach_elb_log_delivery_policy = true
+  bucket        = "logs-2-${random_pet.this.id}"
+  force_destroy = true
+
+  acl                                   = "log-delivery-write"
+  attach_elb_log_delivery_policy        = true
+  attach_deny_insecure_transport_policy = true
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+
+  server_side_encryption_configuration = {
+    rule = {
+      apply_server_side_encryption_by_default = {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  tags = local.tags
 }
 
 ################################################################################
@@ -192,8 +250,9 @@ resource "aws_iam_policy" "custom" {
   name        = "custom-datadog-log-forwarder"
   path        = "/"
   description = "Lambda function to push logs, metrics, and traces to Datadog"
+  policy      = data.aws_iam_policy_document.custom.json
 
-  policy = data.aws_iam_policy_document.custom.json
+  tags = local.tags
 }
 
 module "default" {
@@ -309,5 +368,5 @@ module "default" {
   traces_vpce_security_group_ids = [module.security_group.security_group_id]
   traces_vpce_tags               = { TracesVpcEndpoint = true }
 
-  tags = { Environment = "test" }
+  tags = local.tags
 }

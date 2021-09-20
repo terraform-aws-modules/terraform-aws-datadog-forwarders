@@ -6,6 +6,15 @@ provider "aws" {
 # Data Sources
 ################################################################################
 
+locals {
+  name = "datadog-forwarders-simple-example"
+
+  tags = {
+    Example     = local.name
+    Environment = "dev"
+  }
+}
+
 # Note: you will need to create this secret manually prior to running
 # This avoids having to pass the key to Terraform in plaintext
 data "aws_secretsmanager_secret" "datadog_api_key" {
@@ -26,6 +35,8 @@ resource "aws_kms_key" "datadog" {
   description         = "Datadog KMS CMK"
   enable_key_rotation = true
   policy              = data.aws_iam_policy_document.datadog_cmk.json
+
+  tags = local.tags
 }
 
 data "aws_iam_policy_document" "datadog_cmk" {
@@ -57,5 +68,5 @@ module "default" {
   kms_alias             = aws_kms_alias.datadog.name
   dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
 
-  tags = { Environment = "test" }
+  tags = local.tags
 }

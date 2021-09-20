@@ -30,18 +30,18 @@ Note that this example may create resources which will incur monetary charges on
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.59.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_default"></a> [default](#module\_default) | ../../ | n/a |
-| <a name="module_log_bucket_1"></a> [log\_bucket\_1](#module\_log\_bucket\_1) | terraform-aws-modules/s3-bucket/aws | ~> 2.6 |
-| <a name="module_log_bucket_2"></a> [log\_bucket\_2](#module\_log\_bucket\_2) | terraform-aws-modules/s3-bucket/aws | ~> 2.6 |
-| <a name="module_security_group"></a> [security\_group](#module\_security\_group) | terraform-aws-modules/security-group/aws | ~> 4.3 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 3.2 |
+| <a name="module_log_bucket_1"></a> [log\_bucket\_1](#module\_log\_bucket\_1) | terraform-aws-modules/s3-bucket/aws | ~> 2 |
+| <a name="module_log_bucket_2"></a> [log\_bucket\_2](#module\_log\_bucket\_2) | terraform-aws-modules/s3-bucket/aws | ~> 2 |
+| <a name="module_security_group"></a> [security\_group](#module\_security\_group) | terraform-aws-modules/security-group/aws | ~> 4 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 3 |
 | <a name="module_vpc_endpoints"></a> [vpc\_endpoints](#module\_vpc\_endpoints) | terraform-aws-modules/vpc/aws//modules/vpc-endpoints | ~> 3.2 |
 
 ## Resources
