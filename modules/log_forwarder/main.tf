@@ -24,7 +24,7 @@ data "aws_region" "current" {}
 
 module "this_s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "v2.6.0"
+  version = "v2.10.0"
 
   create_bucket = var.create && var.create_bucket
   bucket        = local.bucket_name

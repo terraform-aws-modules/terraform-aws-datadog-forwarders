@@ -50,7 +50,7 @@ variable "bucket_name" {
 variable "bucket_attach_deny_insecure_transport_policy" {
   description = "Controls if S3 bucket should have deny non-SSL transport policy attacheds"
   type        = bool
-  default     = false
+  default     = true
 }
 
 # Log Forwarder S3 Objcet
