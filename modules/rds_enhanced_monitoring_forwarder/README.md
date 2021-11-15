@@ -35,7 +35,7 @@ module "datadog_rds_enhanced_monitoring_forwarder" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0 |
 
 ## Providers
@@ -115,7 +115,7 @@ No modules.
 | <a name="output_role_policy_arn"></a> [role\_policy\_arn](#output\_role\_policy\_arn) | The ARN of the forwarder lambda role policy |
 | <a name="output_role_policy_id"></a> [role\_policy\_id](#output\_role\_policy\_id) | The ID of the forwarder lambda role policy |
 | <a name="output_role_policy_name"></a> [role\_policy\_name](#output\_role\_policy\_name) | The name of the forwarder lambda role policy |
-| <a name="output_role_unique_id"></a> [role\_unique\_id](#output\_role\_unique\_id) | The stable and unique string identifying the forwarder lambda role. |
+| <a name="output_role_unique_id"></a> [role\_unique\_id](#output\_role\_unique\_id) | The stable and unique string identifying the forwarder lambda role |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## License

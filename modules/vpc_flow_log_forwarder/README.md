@@ -33,7 +33,7 @@ module "datadog_vpc_flow_log_forwarder" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0 |
 
 ## Providers
@@ -90,15 +90,15 @@ No modules.
 | <a name="input_read_cloudwatch_logs"></a> [read\_cloudwatch\_logs](#input\_read\_cloudwatch\_logs) | Whether the forwarder will read CloudWatch log groups for VPC flow logs | `bool` | `false` | no |
 | <a name="input_reserved_concurrent_executions"></a> [reserved\_concurrent\_executions](#input\_reserved\_concurrent\_executions) | The amount of reserved concurrent executions for the forwarder lambda function | `number` | `10` | no |
 | <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | IAM role arn for forwarder lambda function to utilize | `string` | `null` | no |
-| <a name="input_role_max_session_duration"></a> [role\_max\_session\_duration](#input\_role\_max\_session\_duration) | The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. | `number` | `null` | no |
+| <a name="input_role_max_session_duration"></a> [role\_max\_session\_duration](#input\_role\_max\_session\_duration) | The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours | `number` | `null` | no |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Forwarder role name | `string` | `""` | no |
 | <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Forwarder role path | `string` | `null` | no |
-| <a name="input_role_permissions_boundary"></a> [role\_permissions\_boundary](#input\_role\_permissions\_boundary) | The ARN of the policy that is used to set the permissions boundary for the forwarder role. | `string` | `null` | no |
+| <a name="input_role_permissions_boundary"></a> [role\_permissions\_boundary](#input\_role\_permissions\_boundary) | The ARN of the policy that is used to set the permissions boundary for the forwarder role | `string` | `null` | no |
 | <a name="input_role_tags"></a> [role\_tags](#input\_role\_tags) | A map of tags to apply to the forwarder role | `map(string)` | `{}` | no |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | Lambda function runtime | `string` | `"python3.7"` | no |
 | <a name="input_s3_log_bucket_arns"></a> [s3\_log\_bucket\_arns](#input\_s3\_log\_bucket\_arns) | S3 log buckets for forwarder to read and forward VPC flow logs to Datadog | `list(string)` | `[]` | no |
-| <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | List of security group ids when Lambda Function should run in the VPC. | `list(string)` | `null` | no |
-| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet ids when Lambda Function should run in the VPC. Usually private or intra subnets. | `list(string)` | `null` | no |
+| <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | List of security group ids when Lambda Function should run in the VPC | `list(string)` | `null` | no |
+| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet ids when Lambda Function should run in the VPC. Usually private or intra subnets | `list(string)` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to use on all resources | `map(string)` | `{}` | no |
 | <a name="input_timeout"></a> [timeout](#input\_timeout) | The amount of time the forwarder lambda has to execute in seconds | `number` | `10` | no |
 | <a name="input_use_policy_name_prefix"></a> [use\_policy\_name\_prefix](#input\_use\_policy\_name\_prefix) | Whether to use unique name beginning with the specified `policy_name` for the forwarder policy | `bool` | `false` | no |
@@ -120,7 +120,7 @@ No modules.
 | <a name="output_role_policy_arn"></a> [role\_policy\_arn](#output\_role\_policy\_arn) | The ARN of the forwarder lambda role policy |
 | <a name="output_role_policy_id"></a> [role\_policy\_id](#output\_role\_policy\_id) | The ID of the forwarder lambda role policy |
 | <a name="output_role_policy_name"></a> [role\_policy\_name](#output\_role\_policy\_name) | The name of the forwarder lambda role policy |
-| <a name="output_role_unique_id"></a> [role\_unique\_id](#output\_role\_unique\_id) | The stable and unique string identifying the forwarder lambda role. |
+| <a name="output_role_unique_id"></a> [role\_unique\_id](#output\_role\_unique\_id) | The stable and unique string identifying the forwarder lambda role |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 Apache-2.0 Licensed. See [LICENSE](../../LICENSE).

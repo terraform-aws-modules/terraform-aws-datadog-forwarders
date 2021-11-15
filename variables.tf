@@ -122,13 +122,13 @@ variable "log_forwarder_role_path" {
 }
 
 variable "log_forwarder_role_max_session_duration" {
-  description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours."
+  description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours"
   type        = number
   default     = null
 }
 
 variable "log_forwarder_role_permissions_boundary" {
-  description = "The ARN of the policy that is used to set the permissions boundary for the log forwarder role."
+  description = "The ARN of the policy that is used to set the permissions boundary for the log forwarder role"
   type        = string
   default     = null
 }
@@ -237,13 +237,13 @@ variable "log_forwarder_kms_key_arn" {
 }
 
 variable "log_forwarder_subnet_ids" {
-  description = "List of subnet ids when forwarder lambda function should run in the VPC. Usually private or intra subnets."
+  description = "List of subnet ids when forwarder lambda function should run in the VPC. Usually private or intra subnets"
   type        = list(string)
   default     = null
 }
 
 variable "log_forwarder_security_group_ids" {
-  description = "List of security group ids when forwarder lambda function should run in the VPC."
+  description = "List of security group ids when forwarder lambda function should run in the VPC"
   type        = list(string)
   default     = null
 }
@@ -304,7 +304,7 @@ variable "rds_em_forwarder_role_path" {
 }
 
 variable "rds_em_forwarder_role_max_session_duration" {
-  description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours."
+  description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours"
   type        = number
   default     = null
 }
@@ -413,13 +413,13 @@ variable "rds_em_forwarder_kms_key_arn" {
 }
 
 variable "rds_em_forwarder_subnet_ids" {
-  description = "List of subnet ids when forwarder lambda function should run in the VPC. Usually private or intra subnets."
+  description = "List of subnet ids when forwarder lambda function should run in the VPC. Usually private or intra subnets"
   type        = list(string)
   default     = null
 }
 
 variable "rds_em_forwarder_security_group_ids" {
-  description = "List of security group ids when forwarder lambda function should run in the VPC."
+  description = "List of security group ids when forwarder lambda function should run in the VPC"
   type        = list(string)
   default     = null
 }
@@ -480,7 +480,7 @@ variable "vpc_fl_forwarder_role_path" {
 }
 
 variable "vpc_fl_forwarder_role_max_session_duration" {
-  description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours."
+  description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours"
   type        = number
   default     = null
 }
@@ -601,13 +601,13 @@ variable "vpc_fl_forwarder_kms_key_arn" {
 }
 
 variable "vpc_fl_forwarder_subnet_ids" {
-  description = "List of subnet ids when forwarder lambda function should run in the VPC. Usually private or intra subnets."
+  description = "List of subnet ids when forwarder lambda function should run in the VPC. Usually private or intra subnets"
   type        = list(string)
   default     = null
 }
 
 variable "vpc_fl_forwarder_security_group_ids" {
-  description = "List of security group ids when forwarder lambda function should run in the VPC."
+  description = "List of security group ids when forwarder lambda function should run in the VPC"
   type        = list(string)
   default     = null
 }

@@ -8,6 +8,7 @@ on:
       - '**.tf'
       - '**.tmpl'
       - '!examples/**.tf'
+      - '.releaserc.json'
 
 jobs:
   release:
