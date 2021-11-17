@@ -22,10 +22,6 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
   name = "datadog/api_key"
 }
 
-data "aws_secretsmanager_secret_version" "datadog_api_key" {
-  secret_id = data.aws_secretsmanager_secret.datadog_api_key.id
-}
-
 data "aws_caller_identity" "current" {}
 
 ################################################################################

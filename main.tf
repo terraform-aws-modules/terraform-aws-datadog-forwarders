@@ -142,6 +142,8 @@ module "vpc_flow_log_forwarder" {
   policy_name               = var.vpc_fl_forwarder_policy_name
   use_policy_name_prefix    = var.vpc_fl_forwarder_use_policy_name_prefix
   policy_path               = var.vpc_fl_forwarder_policy_path
+  s3_log_bucket_arns        = var.vpc_fl_forwarder_s3_log_bucket_arns
+  read_cloudwatch_logs      = var.vpc_fl_forwarder_read_cloudwatch_logs
 
   tags = merge(var.tags, var.vpc_fl_forwarder_tags)
 }

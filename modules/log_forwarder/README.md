@@ -43,13 +43,14 @@ module "datadog_log_forwarder" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0 |
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+| <a name="provider_null"></a> [null](#provider\_null) | >= 3.0 |
 
 ## Modules
 
@@ -100,7 +101,6 @@ module "datadog_log_forwarder" {
 | <a name="input_policy_name"></a> [policy\_name](#input\_policy\_name) | Forwarder policy name | `string` | `""` | no |
 | <a name="input_policy_path"></a> [policy\_path](#input\_policy\_path) | Forwarder policy path | `string` | `null` | no |
 | <a name="input_publish"></a> [publish](#input\_publish) | Whether to publish creation/change as a new Lambda Function Version | `bool` | `false` | no |
-| <a name="input_read_cloudwatch_logs"></a> [read\_cloudwatch\_logs](#input\_read\_cloudwatch\_logs) | Whether the forwarder will read logs from CloudWatch or not | `bool` | `false` | no |
 | <a name="input_reserved_concurrent_executions"></a> [reserved\_concurrent\_executions](#input\_reserved\_concurrent\_executions) | The amount of reserved concurrent executions for the forwarder lambda function | `number` | `100` | no |
 | <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | IAM role arn for forwarder lambda function to utilize | `string` | `null` | no |
 | <a name="input_role_max_session_duration"></a> [role\_max\_session\_duration](#input\_role\_max\_session\_duration) | The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours | `number` | `null` | no |

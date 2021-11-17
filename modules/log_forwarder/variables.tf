@@ -170,12 +170,6 @@ variable "s3_log_bucket_arns" {
   default     = []
 }
 
-variable "read_cloudwatch_logs" {
-  description = "Whether the forwarder will read logs from CloudWatch or not"
-  type        = bool
-  default     = false
-}
-
 # Forwarder Lambda Function
 variable "forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
