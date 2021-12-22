@@ -53,6 +53,14 @@ variable "bucket_attach_deny_insecure_transport_policy" {
   default     = true
 }
 
+variable "bucket_encryption_settings" {
+  description = "S3 bucket server side encryption settings"
+  type        = map(string)
+  default = {
+    sse_algorithm = "AES256"
+  }
+}
+
 # Log Forwarder S3 Objcet
 variable "log_forwarder_bucket_prefix" {
   description = "S3 object key prefix to prepend to zip archive name"

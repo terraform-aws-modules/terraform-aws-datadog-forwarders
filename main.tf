@@ -30,6 +30,7 @@ module "log_forwarder" {
   bucket_name                                  = var.bucket_name
   bucket_prefix                                = var.log_forwarder_bucket_prefix
   bucket_attach_deny_insecure_transport_policy = var.bucket_attach_deny_insecure_transport_policy
+  bucket_encryption_settings                   = var.bucket_encryption_settings
 
   s3_zip_storage_class          = var.log_forwarder_s3_zip_storage_class
   s3_zip_server_side_encryption = var.log_forwarder_s3_zip_server_side_encryption

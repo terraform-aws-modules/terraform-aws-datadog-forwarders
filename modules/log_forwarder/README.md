@@ -80,6 +80,7 @@ module "datadog_log_forwarder" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_bucket_attach_deny_insecure_transport_policy"></a> [bucket\_attach\_deny\_insecure\_transport\_policy](#input\_bucket\_attach\_deny\_insecure\_transport\_policy) | Controls if S3 bucket should have deny non-SSL transport policy attacheds | `bool` | `false` | no |
+| <a name="input_bucket_encryption_settings"></a> [bucket\_encryption\_settings](#input\_bucket\_encryption\_settings) | S3 bucket server side encryption settings | `map(string)` | <pre>{<br>  "sse_algorithm": "AES256"<br>}</pre> | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | Forwarder S3 bucket name | `string` | `""` | no |
 | <a name="input_bucket_prefix"></a> [bucket\_prefix](#input\_bucket\_prefix) | S3 object key prefix to prepend to zip archive name | `string` | `""` | no |
 | <a name="input_create"></a> [create](#input\_create) | Controls whether the forwarder resources should be created | `bool` | `true` | no |
