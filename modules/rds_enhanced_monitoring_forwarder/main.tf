@@ -82,13 +82,14 @@ resource "aws_lambda_function" "this" {
   function_name = var.name
   handler       = "lambda_function.lambda_handler"
 
-  role        = var.create_role ? aws_iam_role.this[0].arn : var.role_arn
-  description = local.description
-  runtime     = var.runtime
-  layers      = var.layers
-  memory_size = var.memory_size
-  timeout     = var.timeout
-  publish     = var.publish
+  role          = var.create_role ? aws_iam_role.this[0].arn : var.role_arn
+  description   = local.description
+  runtime       = var.runtime
+  layers        = var.layers
+  memory_size   = var.memory_size
+  timeout       = var.timeout
+  publish       = var.publish
+  architectures = var.architectures
 
   reserved_concurrent_executions = var.reserved_concurrent_executions
   kms_key_arn                    = var.kms_key_arn

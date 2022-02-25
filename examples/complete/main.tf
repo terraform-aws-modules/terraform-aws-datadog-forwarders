@@ -268,6 +268,7 @@ module "default" {
   log_forwarder_memory_size                    = 512
   log_forwarder_timeout                        = 60
   log_forwarder_publish                        = true
+  log_forwarder_architectures                  = ["arm64"]
   log_forwarder_reserved_concurrent_executions = 10
   log_forwarder_kms_key_arn                    = aws_kms_alias.datadog.target_key_arn
   log_forwarder_subnet_ids                     = module.vpc.private_subnets
@@ -298,6 +299,7 @@ module "default" {
   rds_em_forwarder_memory_size                    = 512
   rds_em_forwarder_timeout                        = 60
   rds_em_forwarder_publish                        = true
+  rds_em_forwarder_architectures                  = ["arm64"]
   rds_em_forwarder_reserved_concurrent_executions = 10
   rds_em_forwarder_kms_key_arn                    = aws_kms_alias.datadog.target_key_arn
   rds_em_forwarder_subnet_ids                     = module.vpc.private_subnets
@@ -317,6 +319,7 @@ module "default" {
   vpc_fl_forwarder_memory_size                    = 512
   vpc_fl_forwarder_timeout                        = 60
   vpc_fl_forwarder_publish                        = true
+  vpc_fl_forwarder_architectures                  = ["arm64"]
   vpc_fl_forwarder_reserved_concurrent_executions = 10
   vpc_fl_forwarder_kms_key_arn                    = aws_kms_alias.datadog.target_key_arn
   vpc_fl_forwarder_subnet_ids                     = module.vpc.private_subnets

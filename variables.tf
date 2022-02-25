@@ -205,7 +205,7 @@ variable "log_forwarder_name" {
 variable "log_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.7"
+  default     = "python3.9"
 }
 
 variable "log_forwarder_layers" {
@@ -230,6 +230,12 @@ variable "log_forwarder_publish" {
   description = "Whether to publish creation/change as a new Lambda Function Version"
   type        = bool
   default     = false
+}
+
+variable "log_forwarder_architectures" {
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  type        = list(string)
+  default     = ["x86_64"]
 }
 
 variable "log_forwarder_reserved_concurrent_executions" {
@@ -381,7 +387,7 @@ variable "rds_em_forwarder_name" {
 variable "rds_em_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.7"
+  default     = "python3.9"
 }
 
 variable "rds_em_forwarder_layers" {
@@ -406,6 +412,12 @@ variable "rds_em_forwarder_publish" {
   description = "Whether to publish creation/change as a new fambda function Version"
   type        = bool
   default     = false
+}
+
+variable "rds_em_forwarder_architectures" {
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  type        = list(string)
+  default     = ["x86_64"]
 }
 
 variable "rds_em_forwarder_reserved_concurrent_executions" {
@@ -569,7 +581,7 @@ variable "vpc_fl_forwarder_name" {
 variable "vpc_fl_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.7"
+  default     = "python3.9"
 }
 
 variable "vpc_fl_forwarder_layers" {
@@ -594,6 +606,12 @@ variable "vpc_fl_forwarder_publish" {
   description = "Whether to publish creation/change as a new fambda function Version"
   type        = bool
   default     = false
+}
+
+variable "vpc_fl_forwarder_architectures" {
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  type        = list(string)
+  default     = ["x86_64"]
 }
 
 variable "vpc_fl_forwarder_reserved_concurrent_executions" {
