@@ -18,6 +18,7 @@ module "log_forwarder" {
   memory_size                    = var.log_forwarder_memory_size
   timeout                        = var.log_forwarder_timeout
   publish                        = var.log_forwarder_publish
+  architectures                  = var.log_forwarder_architectures
   reserved_concurrent_executions = var.log_forwarder_reserved_concurrent_executions
   kms_key_arn                    = var.log_forwarder_kms_key_arn
   subnet_ids                     = var.log_forwarder_subnet_ids
@@ -76,6 +77,7 @@ module "rds_enhanced_monitoring_forwarder" {
   memory_size                    = var.rds_em_forwarder_memory_size
   timeout                        = var.rds_em_forwarder_timeout
   publish                        = var.rds_em_forwarder_publish
+  architectures                  = var.rds_em_forwarder_architectures
   reserved_concurrent_executions = var.rds_em_forwarder_reserved_concurrent_executions
   kms_key_arn                    = var.rds_em_forwarder_kms_key_arn
   subnet_ids                     = var.rds_em_forwarder_subnet_ids
@@ -122,6 +124,7 @@ module "vpc_flow_log_forwarder" {
   memory_size                    = var.vpc_fl_forwarder_memory_size
   timeout                        = var.vpc_fl_forwarder_timeout
   publish                        = var.vpc_fl_forwarder_publish
+  architectures                  = var.vpc_fl_forwarder_architectures
   reserved_concurrent_executions = var.vpc_fl_forwarder_reserved_concurrent_executions
   kms_key_arn                    = var.vpc_fl_forwarder_kms_key_arn
   subnet_ids                     = var.vpc_fl_forwarder_subnet_ids

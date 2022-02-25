@@ -141,7 +141,7 @@ variable "name" {
 variable "runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.7"
+  default     = "python3.9"
 }
 
 variable "layers" {
@@ -166,6 +166,12 @@ variable "publish" {
   description = "Whether to publish creation/change as a new Lambda Function Version"
   type        = bool
   default     = false
+}
+
+variable "architectures" {
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  type        = list(string)
+  default     = ["x86_64"]
 }
 
 variable "reserved_concurrent_executions" {

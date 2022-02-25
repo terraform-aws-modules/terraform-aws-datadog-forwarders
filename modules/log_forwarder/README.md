@@ -56,7 +56,7 @@ module "datadog_log_forwarder" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_this_s3_bucket"></a> [this\_s3\_bucket](#module\_this\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | v2.11.0 |
+| <a name="module_this_s3_bucket"></a> [this\_s3\_bucket](#module\_this\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | v2.14.1 |
 
 ## Resources
 
@@ -79,6 +79,7 @@ module "datadog_log_forwarder" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_architectures"></a> [architectures](#input\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br>  "x86_64"<br>]</pre> | no |
 | <a name="input_bucket_attach_deny_insecure_transport_policy"></a> [bucket\_attach\_deny\_insecure\_transport\_policy](#input\_bucket\_attach\_deny\_insecure\_transport\_policy) | Controls if S3 bucket should have deny non-SSL transport policy attacheds | `bool` | `false` | no |
 | <a name="input_bucket_encryption_settings"></a> [bucket\_encryption\_settings](#input\_bucket\_encryption\_settings) | S3 bucket server side encryption settings | `map(string)` | <pre>{<br>  "sse_algorithm": "AES256"<br>}</pre> | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | Forwarder S3 bucket name | `string` | `""` | no |
@@ -109,7 +110,7 @@ module "datadog_log_forwarder" {
 | <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Forwarder role path | `string` | `null` | no |
 | <a name="input_role_permissions_boundary"></a> [role\_permissions\_boundary](#input\_role\_permissions\_boundary) | The ARN of the policy that is used to set the permissions boundary for the forwarder role | `string` | `null` | no |
 | <a name="input_role_tags"></a> [role\_tags](#input\_role\_tags) | A map of tags to apply to the forwarder role | `map(string)` | `{}` | no |
-| <a name="input_runtime"></a> [runtime](#input\_runtime) | Lambda function runtime | `string` | `"python3.7"` | no |
+| <a name="input_runtime"></a> [runtime](#input\_runtime) | Lambda function runtime | `string` | `"python3.9"` | no |
 | <a name="input_s3_log_bucket_arns"></a> [s3\_log\_bucket\_arns](#input\_s3\_log\_bucket\_arns) | S3 log buckets for forwarder to read and forward logs to Datadog | `list(string)` | `[]` | no |
 | <a name="input_s3_zip_kms_key_id"></a> [s3\_zip\_kms\_key\_id](#input\_s3\_zip\_kms\_key\_id) | The AWS KMS Key ARN to use for object encryption | `string` | `null` | no |
 | <a name="input_s3_zip_metadata"></a> [s3\_zip\_metadata](#input\_s3\_zip\_metadata) | A map of keys/values to provision metadata (will be automatically prefixed by `x-amz-meta-` | `map(string)` | `{}` | no |
