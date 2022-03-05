@@ -4,6 +4,7 @@
       "Action": [
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
+        "logs:ListTagsLogGroup",
         "logs:PutLogEvents"%{ if vpc_check },
         "ec2:CreateNetworkInterface",
         "ec2:DescribeNetworkInterfaces",
