@@ -8,7 +8,7 @@ on:
       - '**.tf'
       - '**.tmpl'
       - '!examples/**.tf'
-      - '.releaserc.json'
+      - '.github/workflows/semantic-releaser.yml'
 
 jobs:
   release:
@@ -24,9 +24,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
 
       - name: Release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          semantic_version: 18.0.0
+          extra_plugins: |
+            conventional-changelog-conventionalcommits@4.6.3
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
-        run: npx semantic-release
