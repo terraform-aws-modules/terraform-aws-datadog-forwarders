@@ -146,7 +146,7 @@ module "security_group" {
 
 module "log_bucket_1" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 2.0"
+  version = "~> 3.0"
 
   bucket        = "logs-1-${random_pet.this.id}"
   force_destroy = true
@@ -173,7 +173,7 @@ module "log_bucket_1" {
 
 module "log_bucket_2" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 2.0"
+  version = "~> 3.0"
 
   bucket        = "logs-2-${random_pet.this.id}"
   force_destroy = true
