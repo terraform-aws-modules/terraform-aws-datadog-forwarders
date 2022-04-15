@@ -110,7 +110,7 @@ module "datadog_log_forwarder" {
 | <a name="input_role_path"></a> [role\_path](#input\_role\_path) | Forwarder role path | `string` | `null` | no |
 | <a name="input_role_permissions_boundary"></a> [role\_permissions\_boundary](#input\_role\_permissions\_boundary) | The ARN of the policy that is used to set the permissions boundary for the forwarder role | `string` | `null` | no |
 | <a name="input_role_tags"></a> [role\_tags](#input\_role\_tags) | A map of tags to apply to the forwarder role | `map(string)` | `{}` | no |
-| <a name="input_runtime"></a> [runtime](#input\_runtime) | Lambda function runtime | `string` | `"python3.9"` | no |
+| <a name="input_runtime"></a> [runtime](#input\_runtime) | Lambda function runtime | `string` | `"python3.7"` | no |
 | <a name="input_s3_log_bucket_arns"></a> [s3\_log\_bucket\_arns](#input\_s3\_log\_bucket\_arns) | S3 log buckets for forwarder to read and forward logs to Datadog | `list(string)` | `[]` | no |
 | <a name="input_s3_zip_kms_key_id"></a> [s3\_zip\_kms\_key\_id](#input\_s3\_zip\_kms\_key\_id) | The AWS KMS Key ARN to use for object encryption | `string` | `null` | no |
 | <a name="input_s3_zip_metadata"></a> [s3\_zip\_metadata](#input\_s3\_zip\_metadata) | A map of keys/values to provision metadata (will be automatically prefixed by `x-amz-meta-` | `map(string)` | `{}` | no |
