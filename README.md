@@ -1,5 +1,14 @@
 # AWS Datadog Forwarders Terraform module
 
+## ⚠️ Module has moved to `terraform-aws-modules`
+
+This module has moved to the terraform-aws-modules organization. Users will need to update their module source:
+
+```diff
+- source = "clowdhaus/datadog-forwarders/aws"
++ source = "terraform-aws-modules/datadog-forwarders/aws"
+```
+
 Terraform module which creates resources to forward logs and metrics to Datadog on AWS.
 
 The following resources are supported:
@@ -31,7 +40,7 @@ Due to Terraform not dealing with dynamically created files, especially in ephem
 
 ## Usage
 
-See [`examples`](./examples) directory for working examples to reference:
+See [`examples`](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/tree/master/examples) directory for working examples to reference:
 
 ```hcl
 # Note: you will need to create this secret manually prior to running
@@ -41,7 +50,7 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
 }
 
 module "datadog_forwarders" {
-  source  = "clowdhaus/datadog-forwarders/aws"
+  source  = "terraform-aws-modules/datadog-forwarders/aws"
 
   kms_alias             = "alias/datadog" # KMS key will need to be created outside of module
   dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
@@ -55,10 +64,10 @@ module "datadog_forwarders" {
 
 ## Examples
 
-Examples codified under the [`examples`](./examples) are intended to give users references for how to use the module(s) as well as testing/validating changes to the source code of the module(s). If contributing to the project, please be sure to make any appropriate updates to the relevant examples to allow maintainers to test your changes and to keep the examples up to date for users. Thank you!
+Examples codified under the [`examples`](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/tree/master/examples) are intended to give users references for how to use the module(s) as well as testing/validating changes to the source code of the module(s). If contributing to the project, please be sure to make any appropriate updates to the relevant examples to allow maintainers to test your changes and to keep the examples up to date for users. Thank you!
 
-- [Complete](./examples/complete)
-- [Simple](./examples/simple)
+- [Complete](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/tree/master/examples/complete)
+- [Simple](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/tree/master/examples/simple)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -328,4 +337,4 @@ Examples codified under the [`examples`](./examples) are intended to give users 
 
 ## License
 
-Apache-2.0 Licensed. See [LICENSE](LICENSE).
+Apache-2.0 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/blob/master/LICENSE).

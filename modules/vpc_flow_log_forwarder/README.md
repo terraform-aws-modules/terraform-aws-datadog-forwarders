@@ -2,10 +2,6 @@
 
 Terraform module which process a VPC flow log monitoring DATA_MESSAGE, coming from CloudWatch logs.
 
-## Terraform versions
-
-Terraform 0.12 and above are supported.
-
 ## Usage
 
 ```hcl
@@ -16,7 +12,7 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
 }
 
 module "datadog_vpc_flow_log_forwarder" {
-  source  = "clowdhaus/datadog-forwarders/aws//modules/vpc_flow_log_forwarder"
+  source  = "terraform-aws-modules/datadog-forwarders/aws//modules/vpc_flow_log_forwarder"
 
   kms_alias             = "alias/datadog" # KMS key will need to be created outside of module
   dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
@@ -124,4 +120,4 @@ No modules.
 | <a name="output_role_unique_id"></a> [role\_unique\_id](#output\_role\_unique\_id) | The stable and unique string identifying the forwarder lambda role |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-Apache-2.0 Licensed. See [LICENSE](../../LICENSE).
+Apache-2.0 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/blob/master/LICENSE).

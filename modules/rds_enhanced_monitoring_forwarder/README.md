@@ -2,12 +2,6 @@
 
 Terraform module which process a RDS enhanced monitoring DATA_MESSAGE, coming from CloudWatch logs and forwards to Datadog.
 
-## Terraform versions
-
-Terraform 0.12 and above are supported.
-
-## Usage
-
 ## Usage
 
 ```hcl
@@ -18,7 +12,7 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
 }
 
 module "datadog_rds_enhanced_monitoring_forwarder" {
-  source  = "clowdhaus/datadog-forwarders/aws//modules/rds_enhanced_monitoring_forwarder"
+  source  = "terraform-aws-modules/datadog-forwarders/aws//modules/rds_enhanced_monitoring_forwarder"
 
   kms_alias             = "alias/datadog" # KMS key will need to be created outside of module
   dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
@@ -121,4 +115,4 @@ No modules.
 
 ## License
 
-Apache-2.0 Licensed. See [LICENSE](../../LICENSE).
+Apache-2.0 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/blob/master/LICENSE).

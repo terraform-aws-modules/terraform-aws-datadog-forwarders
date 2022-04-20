@@ -25,7 +25,7 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
 }
 
 module "datadog_log_forwarder" {
-  source  = "clowdhaus/datadog-forwarders/aws//modules/log_forwarder"
+  source  = "terraform-aws-modules/datadog-forwarders/aws//modules/log_forwarder"
 
   dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
 
@@ -152,4 +152,4 @@ module "datadog_log_forwarder" {
 
 ## License
 
-Apache-2.0 Licensed. See [LICENSE](../../LICENSE).
+Apache-2.0 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/blob/master/LICENSE).

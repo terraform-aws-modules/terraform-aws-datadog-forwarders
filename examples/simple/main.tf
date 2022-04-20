@@ -1,17 +1,15 @@
 provider "aws" {
-  region = "us-east-1"
+  region = local.region
 }
 
-################################################################################
-# Data Sources
-################################################################################
-
 locals {
-  name = "datadog-forwarders-simple-example"
+  region = "us-east-1"
+  name   = "datadog-fwd-ex-${replace(basename(path.cwd), "_", "-")}"
 
   tags = {
-    Example     = local.name
-    Environment = "dev"
+    Name       = local.name
+    Example    = local.name
+    Repository = "https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders"
   }
 }
 
@@ -22,6 +20,19 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
 }
 
 data "aws_caller_identity" "current" {}
+
+################################################################################
+# Module
+################################################################################
+
+module "default" {
+  source = "../../"
+
+  kms_alias             = aws_kms_alias.datadog.name
+  dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
+
+  tags = local.tags
+}
 
 ################################################################################
 # Supporting Resources
@@ -56,17 +67,4 @@ data "aws_iam_policy_document" "datadog_cmk" {
 resource "aws_kms_alias" "datadog" {
   name          = "alias/datadog/${random_pet.this.id}"
   target_key_id = aws_kms_key.datadog.key_id
-}
-
-################################################################################
-# Module
-################################################################################
-
-module "default" {
-  source = "../../"
-
-  kms_alias             = aws_kms_alias.datadog.name
-  dd_api_key_secret_arn = data.aws_secretsmanager_secret.datadog_api_key.arn
-
-  tags = local.tags
 }
