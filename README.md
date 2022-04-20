@@ -1,14 +1,5 @@
 # AWS Datadog Forwarders Terraform module
 
-## ⚠️ Module has moved to `terraform-aws-modules`
-
-This module has moved to the terraform-aws-modules organization. Users will need to update their module source:
-
-```diff
-- source = "clowdhaus/datadog-forwarders/aws"
-+ source = "terraform-aws-modules/datadog-forwarders/aws"
-```
-
 Terraform module which creates resources to forward logs and metrics to Datadog on AWS.
 
 The following resources are supported:
