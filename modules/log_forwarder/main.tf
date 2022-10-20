@@ -22,7 +22,7 @@ data "aws_region" "current" {}
 # Forwarder Bucket
 ################################################################################
 
-module "this_s3_bucket" {
+module "s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "v3.0.1"
 
