@@ -56,7 +56,7 @@ module "datadog_log_forwarder" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_this_s3_bucket"></a> [this\_s3\_bucket](#module\_this\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | v3.0.1 |
+| <a name="module_this_s3_bucket"></a> [this\_s3\_bucket](#module\_this\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | v3.3.1 |
 
 ## Resources
 
