@@ -24,7 +24,7 @@ data "aws_region" "current" {}
 
 module "this_s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "v3.0.1"
+  version = "v3.6.1"
 
   create_bucket = var.create && var.create_bucket
   bucket        = local.bucket_name
@@ -128,7 +128,7 @@ resource "null_resource" "this" {
   }
 }
 
-resource "aws_s3_bucket_object" "this" {
+resource "aws_s3_object" "this" {
   count = var.create ? 1 : 0
 
   bucket = var.create_bucket ? module.this_s3_bucket.s3_bucket_id : var.bucket_name
@@ -153,8 +153,8 @@ resource "aws_lambda_function" "this" {
   count = var.create ? 1 : 0
 
   s3_bucket         = var.create_bucket ? module.this_s3_bucket.s3_bucket_id : var.bucket_name
-  s3_key            = aws_s3_bucket_object.this[0].key
-  s3_object_version = aws_s3_bucket_object.this[0].version_id
+  s3_key            = aws_s3_object.this[0].key
+  s3_object_version = aws_s3_object.this[0].version_id
   function_name     = var.name
   handler           = "lambda_function.lambda_handler"
 
