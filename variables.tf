@@ -98,6 +98,12 @@ variable "log_forwarder_s3_zip_tags" {
   default     = {}
 }
 
+variable "log_forwarder_s3_zip_tags_only" {
+  description = "Set to true to not merge `var.tags` with `log_forwarder_s3_zip_tags`. Useful to avoid breaching S3 Object 10 tag limit"
+  type        = bool
+  default     = false
+}
+
 # Log Forwarder IAM Role
 variable "create_log_forwarder_role" {
   description = "Controls whether an IAM role is created for the log forwarder"
@@ -187,7 +193,7 @@ variable "log_forwarder_s3_log_bucket_arns" {
 variable "log_forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.44.0"
+  default     = "3.69.0"
 }
 
 variable "create_log_forwarder" {
@@ -369,7 +375,7 @@ variable "rds_em_forwarder_policy_path" {
 variable "rds_em_forwarder_version" {
   description = "RDS enhanced monitoring lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.44.0"
+  default     = "3.69.0"
 }
 
 variable "create_rds_em_forwarder" {
@@ -563,7 +569,7 @@ variable "vpc_fl_forwarder_read_cloudwatch_logs" {
 variable "vpc_fl_forwarder_version" {
   description = "VPC flow log lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.44.0"
+  default     = "3.69.0"
 }
 
 variable "create_vpc_fl_forwarder" {

@@ -93,6 +93,12 @@ variable "s3_zip_tags" {
   default     = {}
 }
 
+variable "s3_zip_tags_only" {
+  description = "Set to true to not merge `var.tags` with `s3_zip_tags`. Useful to avoid breaching S3 Object 10 tag limit"
+  type        = bool
+  default     = false
+}
+
 # Forwarder IAM Role
 variable "create_role" {
   description = "Controls whether an IAM role is created for the forwarder"
@@ -182,7 +188,7 @@ variable "s3_log_bucket_arns" {
 variable "forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.44.0"
+  default     = "3.69.0"
 }
 
 variable "name" {

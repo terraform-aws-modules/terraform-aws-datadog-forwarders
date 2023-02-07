@@ -38,6 +38,7 @@ module "log_forwarder" {
   s3_zip_kms_key_id             = var.log_forwarder_s3_zip_kms_key_id
   s3_zip_metadata               = var.log_forwarder_s3_zip_metadata
   s3_zip_tags                   = var.log_forwarder_s3_zip_tags
+  s3_zip_tags_only              = var.log_forwarder_s3_zip_tags_only
 
   create_role               = var.create_log_forwarder_role
   role_arn                  = var.log_forwarder_role_arn

@@ -144,7 +144,7 @@ resource "aws_s3_object" "this" {
   kms_key_id             = var.s3_zip_kms_key_id
   metadata               = var.s3_zip_metadata
 
-  tags = merge(var.tags, var.s3_zip_tags, local.version_tag)
+  tags = var.s3_zip_tags_only ? var.s3_zip_tags : merge(var.tags, var.s3_zip_tags, local.version_tag)
 
   depends_on = [null_resource.this]
 }
