@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [5.0.1](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v5.0.0...v5.0.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* Change tags for 'aws_s3_bucket_object' based on AWS limit and add validation for them ([#26](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/26)) ([8250b8e](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/8250b8e331fa6d730370d6f8fc243634000e16b7))
+
 ## [5.0.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v4.1.1...v5.0.0) (2023-02-03)
 
 
