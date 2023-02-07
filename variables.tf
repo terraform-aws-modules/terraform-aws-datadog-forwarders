@@ -96,10 +96,12 @@ variable "log_forwarder_s3_zip_tags" {
   description = "A map of tags to apply to the zip archive in S3"
   type        = map(string)
   default     = {}
-  validation {
-    condition     = length(var.log_forwarder_s3_zip_tags) <= 10
-    error_message = "You can associate up to 10 tags with an s3 bucket object."
-  }
+}
+
+variable "log_forwarder_s3_zip_tags_only" {
+  description = "Set to true to not merge `var.tags` with `log_forwarder_s3_zip_tags`. Useful to avoid breaching S3 Object 10 tag limit"
+  type        = bool
+  default     = false
 }
 
 # Log Forwarder IAM Role

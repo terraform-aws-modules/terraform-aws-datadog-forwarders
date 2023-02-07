@@ -117,6 +117,7 @@ module "datadog_log_forwarder" {
 | <a name="input_s3_zip_server_side_encryption"></a> [s3\_zip\_server\_side\_encryption](#input\_s3\_zip\_server\_side\_encryption) | Server-side encryption of the zip object in S3. Valid values are `AES256` and `aws:kms` | `string` | `null` | no |
 | <a name="input_s3_zip_storage_class"></a> [s3\_zip\_storage\_class](#input\_s3\_zip\_storage\_class) | Specifies the desired Storage Class for the zip object. Can be either `STANDARD`, `REDUCED_REDUNDANCY`, `ONEZONE_IA`, `INTELLIGENT_TIERING`, or `STANDARD_IA` | `string` | `null` | no |
 | <a name="input_s3_zip_tags"></a> [s3\_zip\_tags](#input\_s3\_zip\_tags) | A map of tags to apply to the zip archive in S3 | `map(string)` | `{}` | no |
+| <a name="input_s3_zip_tags_only"></a> [s3\_zip\_tags\_only](#input\_s3\_zip\_tags\_only) | Set to true to not merge `var.tags` with `s3_zip_tags`. Useful to avoid breaching S3 Object 10 tag limit | `bool` | `false` | no |
 | <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | List of security group ids when Lambda Function should run in the VPC | `list(string)` | `null` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet ids when Lambda Function should run in the VPC. Usually private or intra subnets | `list(string)` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to use on all resources | `map(string)` | `{}` | no |
