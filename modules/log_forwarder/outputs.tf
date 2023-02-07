@@ -58,17 +58,17 @@ output "role_policy_name" {
 # Forwarder ZIP Archive
 output "s3_object_id" {
   description = "The `key` of the forwarder lambda zip archive"
-  value       = try(aws_s3_bucket_object.this[0].id, "")
+  value       = try(aws_s3_object.this[0].id, "")
 }
 
 output "s3_object_etag" {
   description = "The ETag generated for the forwarder lambda zip object (an MD5 sum of the object content)"
-  value       = try(aws_s3_bucket_object.this[0].etag, "")
+  value       = try(aws_s3_object.this[0].etag, "")
 }
 
 output "s3_object_version" {
   description = "A unique version ID value for the forwarder lambda zip object, if bucket versioning is enabled"
-  value       = try(aws_s3_bucket_object.this[0].version_id, "")
+  value       = try(aws_s3_object.this[0].version_id, "")
 }
 
 # Forwarder Lambda Function

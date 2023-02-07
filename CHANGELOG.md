@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.0.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v4.1.1...v5.0.0) (2023-02-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update S3 module to v3.6.1 and switch to resource aws_s3_object (#29)
+
+### Features
+
+* Update S3 module to v3.6.1 and switch to resource aws_s3_object ([#29](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/29)) ([11ff8e9](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/11ff8e9dcd96aefb31a0998a8833b2c98e11b4f0))
+
 ### [4.1.1](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v4.1.0...v4.1.1) (2022-11-07)
 
 
