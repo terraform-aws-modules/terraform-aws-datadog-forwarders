@@ -106,6 +106,7 @@ module "default" {
     DD_URL                        = "api-pvtlink.logs.datadoghq.com" # log forwarder
   }
   log_forwarder_lambda_tags                   = { LogForwarderLambda = true }
+  log_forwarder_log_kms_key_id                = aws_kms_alias.datadog.target_key_arn
   log_forwarder_log_retention_days            = 3
   log_forwarder_bucket_prefix                 = "logforwarder"
   log_forwarder_s3_zip_server_side_encryption = "AES256"
@@ -129,6 +130,7 @@ module "default" {
   rds_em_forwarder_security_group_ids             = [module.security_group.security_group_id]
   rds_em_forwarder_environment_variables          = {}
   rds_em_forwarder_lambda_tags                    = { RdsForwarderLambda = true }
+  rds_em_forwarder_log_kms_key_id                 = aws_kms_alias.datadog.target_key_arn
   rds_em_forwarder_log_retention_days             = 3
   rds_em_forwarder_use_role_name_prefix           = true
   rds_em_forwarder_role_path                      = "/datadog/"
@@ -149,6 +151,7 @@ module "default" {
   vpc_fl_forwarder_security_group_ids             = [module.security_group.security_group_id]
   vpc_fl_forwarder_environment_variables          = {}
   vpc_fl_forwarder_lambda_tags                    = { VpcForwarderLambda = true }
+  vpc_fl_forwarder_log_kms_key_id                 = aws_kms_alias.datadog.target_key_arn
   vpc_fl_forwarder_log_retention_days             = 3
   vpc_fl_forwarder_use_role_name_prefix           = true
   vpc_fl_forwarder_role_path                      = "/datadog/"

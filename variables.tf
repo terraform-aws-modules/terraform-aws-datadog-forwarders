@@ -292,6 +292,12 @@ variable "log_forwarder_log_retention_days" {
   default     = 7
 }
 
+variable "log_forwarder_log_kms_key_id" {
+  description = "The AWS KMS Key ARN to use for CloudWatch log group encryption"
+  type        = string
+  default     = null
+}
+
 # RDS Enhanced Monitoring Forwarder IAM Role
 variable "create_rds_em_forwarder_role" {
   description = "Controls whether an IAM role is created for the RDS enhanced monitoring forwarder"
@@ -472,6 +478,12 @@ variable "rds_em_forwarder_log_retention_days" {
   description = "RDS enhanced monitoring forwarder CloudWatch log group retention in days"
   type        = number
   default     = 7
+}
+
+variable "rds_em_forwarder_log_kms_key_id" {
+  description = "The AWS KMS Key ARN to use for CloudWatch log group encryption"
+  type        = string
+  default     = null
 }
 
 # VPC Flow Log Forwarder IAM Role
@@ -666,6 +678,12 @@ variable "vpc_fl_forwarder_log_retention_days" {
   description = "VPC flow log forwarder CloudWatch log group retention in days"
   type        = number
   default     = 7
+}
+
+variable "vpc_fl_forwarder_log_kms_key_id" {
+  description = "The AWS KMS Key ARN to use for CloudWatch log group encryption"
+  type        = string
+  default     = null
 }
 
 # PrivateLink / VPC Endpoints
