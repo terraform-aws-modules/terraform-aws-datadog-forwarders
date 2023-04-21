@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.1.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v5.0.1...v5.1.0) (2023-04-21)
+
+
+### Features
+
+* Add support for CloudWatch log group KMS key ([#31](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/31)) ([63e0576](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/63e0576fdf682caf72a49f20f2d8a62d23445ebb))
+
 ### [5.0.1](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v5.0.0...v5.0.1) (2023-02-07)
 
 
