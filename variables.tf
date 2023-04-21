@@ -193,7 +193,7 @@ variable "log_forwarder_s3_log_bucket_arns" {
 variable "log_forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.69.0"
+  default     = "3.73.0"
 }
 
 variable "create_log_forwarder" {
@@ -211,7 +211,7 @@ variable "log_forwarder_name" {
 variable "log_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.9"
+  default     = "python3.8"
 }
 
 variable "log_forwarder_layers" {
@@ -375,7 +375,7 @@ variable "rds_em_forwarder_policy_path" {
 variable "rds_em_forwarder_version" {
   description = "RDS enhanced monitoring lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.69.0"
+  default     = "3.73.0"
 }
 
 variable "create_rds_em_forwarder" {
@@ -393,7 +393,7 @@ variable "rds_em_forwarder_name" {
 variable "rds_em_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.9"
+  default     = "python3.8"
 }
 
 variable "rds_em_forwarder_layers" {
@@ -569,7 +569,7 @@ variable "vpc_fl_forwarder_read_cloudwatch_logs" {
 variable "vpc_fl_forwarder_version" {
   description = "VPC flow log lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.69.0"
+  default     = "3.73.0"
 }
 
 variable "create_vpc_fl_forwarder" {
@@ -587,7 +587,7 @@ variable "vpc_fl_forwarder_name" {
 variable "vpc_fl_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.9"
+  default     = "python3.8"
 }
 
 variable "vpc_fl_forwarder_layers" {
