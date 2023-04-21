@@ -211,7 +211,7 @@ variable "log_forwarder_name" {
 variable "log_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.9"
+  default     = "python3.8"
 }
 
 variable "log_forwarder_layers" {
@@ -393,7 +393,7 @@ variable "rds_em_forwarder_name" {
 variable "rds_em_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.9"
+  default     = "python3.8"
 }
 
 variable "rds_em_forwarder_layers" {
@@ -587,7 +587,7 @@ variable "vpc_fl_forwarder_name" {
 variable "vpc_fl_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.9"
+  default     = "python3.8"
 }
 
 variable "vpc_fl_forwarder_layers" {

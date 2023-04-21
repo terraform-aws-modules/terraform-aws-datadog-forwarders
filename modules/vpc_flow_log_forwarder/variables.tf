@@ -141,7 +141,7 @@ variable "name" {
 variable "runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.7"
+  default     = "python3.8"
 }
 
 variable "layers" {
