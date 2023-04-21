@@ -26,6 +26,7 @@ module "log_forwarder" {
   environment_variables          = var.log_forwarder_environment_variables
   lambda_tags                    = var.log_forwarder_lambda_tags
   log_retention_days             = var.log_forwarder_log_retention_days
+  log_kms_key_id                 = var.log_forwarder_log_kms_key_id
 
   create_bucket                                = var.create_bucket
   bucket_name                                  = var.bucket_name
@@ -86,6 +87,7 @@ module "rds_enhanced_monitoring_forwarder" {
   environment_variables          = var.rds_em_forwarder_environment_variables
   lambda_tags                    = var.rds_em_forwarder_lambda_tags
   log_retention_days             = var.rds_em_forwarder_log_retention_days
+  log_kms_key_id                 = var.rds_em_forwarder_log_kms_key_id
 
   create_role               = var.create_rds_em_forwarder_role
   role_arn                  = var.rds_em_forwarder_role_arn
@@ -133,6 +135,7 @@ module "vpc_flow_log_forwarder" {
   environment_variables          = var.vpc_fl_forwarder_environment_variables
   lambda_tags                    = var.vpc_fl_forwarder_lambda_tags
   log_retention_days             = var.vpc_fl_forwarder_log_retention_days
+  log_kms_key_id                 = var.vpc_fl_forwarder_log_kms_key_id
 
   create_role               = var.create_vpc_fl_forwarder_role
   role_arn                  = var.vpc_fl_forwarder_role_arn

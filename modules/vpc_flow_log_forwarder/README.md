@@ -77,6 +77,7 @@ No modules.
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key | `string` | `null` | no |
 | <a name="input_lambda_tags"></a> [lambda\_tags](#input\_lambda\_tags) | A map of tags to apply to the forwarder lambda function | `map(string)` | `{}` | no |
 | <a name="input_layers"></a> [layers](#input\_layers) | List of Lambda Layer Version ARNs (maximum of 5) to attach to the forwarder lambda | `list(string)` | `[]` | no |
+| <a name="input_log_kms_key_id"></a> [log\_kms\_key\_id](#input\_log\_kms\_key\_id) | The AWS KMS Key ARN to use for CloudWatch log group encryption | `string` | `null` | no |
 | <a name="input_log_retention_days"></a> [log\_retention\_days](#input\_log\_retention\_days) | Forwarder CloudWatch log group retention in days | `number` | `7` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Memory size for the forwarder lambda function | `number` | `256` | no |
 | <a name="input_name"></a> [name](#input\_name) | Forwarder lambda name | `string` | `"datadog-vpc-flow-log-forwarder"` | no |
