@@ -188,7 +188,7 @@ variable "s3_log_bucket_arns" {
 variable "forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.69.0"
+  default     = "3.73.0"
 }
 
 variable "name" {
