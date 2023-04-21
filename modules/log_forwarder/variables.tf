@@ -188,7 +188,7 @@ variable "s3_log_bucket_arns" {
 variable "forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.69.0"
+  default     = "3.73.0"
 }
 
 variable "name" {
@@ -200,7 +200,7 @@ variable "name" {
 variable "runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.7"
+  default     = "python3.8"
 }
 
 variable "layers" {
