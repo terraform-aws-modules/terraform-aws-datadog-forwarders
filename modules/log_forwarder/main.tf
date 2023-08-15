@@ -135,6 +135,8 @@ resource "aws_s3_object" "this" {
   key    = join("/", compact([var.bucket_prefix, local.zip_name]))
   source = local.forwarder_zip
 
+  acl = "private"
+
   content_encoding = "zip"
   content_language = "en-US"
   content_type     = "application/zip"
