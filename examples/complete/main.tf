@@ -237,7 +237,7 @@ resource "aws_kms_alias" "datadog" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name = local.name
   cidr = local.vpc_cidr
@@ -253,7 +253,7 @@ module "vpc" {
 
 module "vpc_endpoints" {
   source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   vpc_id             = module.vpc.vpc_id
   security_group_ids = [module.security_group.security_group_id]
@@ -305,19 +305,14 @@ module "security_group" {
 
 module "log_bucket_1" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
-  bucket        = "logs-1-${random_pet.this.id}"
+  bucket_prefix = "logs-1-"
   force_destroy = true
 
-  acl                                   = "log-delivery-write"
+  control_object_ownership              = true
   attach_elb_log_delivery_policy        = true
   attach_deny_insecure_transport_policy = true
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
 
   server_side_encryption_configuration = {
     rule = {
@@ -332,19 +327,14 @@ module "log_bucket_1" {
 
 module "log_bucket_2" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
-  bucket        = "logs-2-${random_pet.this.id}"
+  bucket_prefix = "logs-2-"
   force_destroy = true
 
-  acl                                   = "log-delivery-write"
+  control_object_ownership              = true
   attach_elb_log_delivery_policy        = true
   attach_deny_insecure_transport_policy = true
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
 
   server_side_encryption_configuration = {
     rule = {
