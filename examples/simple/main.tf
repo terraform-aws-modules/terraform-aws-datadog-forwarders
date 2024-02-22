@@ -2,14 +2,16 @@ provider "aws" {
   region = local.region
 }
 
+data "aws_caller_identity" "current" {}
+
 locals {
   region = "us-east-1"
-  name   = "datadog-fwd-ex-${replace(basename(path.cwd), "_", "-")}"
+  name   = "datadog-fwd-ex-${basename(path.cwd)}"
 
   tags = {
-    Name       = local.name
     Example    = local.name
-    Repository = "https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders"
+    GithubRepo = "terraform-aws-datadog-forwarders"
+    GithubOrg  = "terraform-aws-modules"
   }
 }
 
@@ -18,8 +20,6 @@ locals {
 data "aws_secretsmanager_secret" "datadog_api_key" {
   name = "datadog/api_key"
 }
-
-data "aws_caller_identity" "current" {}
 
 ################################################################################
 # Module
