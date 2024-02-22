@@ -2,14 +2,20 @@ provider "aws" {
   region = local.region
 }
 
+data "aws_caller_identity" "current" {}
+data "aws_availability_zones" "available" {}
+
 locals {
   region = "us-east-1"
-  name   = "datadog-fwd-ex-${replace(basename(path.cwd), "_", "-")}"
+  name   = "datadog-fwd-ex-${basename(path.cwd)}"
+
+  vpc_cidr = "10.0.0.0/16"
+  azs      = slice(data.aws_availability_zones.available.names, 0, 3)
 
   tags = {
-    Name       = local.name
     Example    = local.name
-    Repository = "https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders"
+    GithubRepo = "terraform-aws-datadog-forwarders"
+    GithubOrg  = "terraform-aws-modules"
   }
 }
 
@@ -19,60 +25,9 @@ data "aws_secretsmanager_secret" "datadog_api_key" {
   name = "datadog/api_key"
 }
 
-data "aws_caller_identity" "current" {}
-
 ################################################################################
 # Module
 ################################################################################
-
-data "aws_iam_policy_document" "custom" {
-  statement {
-    sid = "AnyResourceAccess"
-    actions = [
-      "logs:CreateLogGroup",
-      "logs:CreateLogStream",
-      "tag:GetResources",
-      "logs:PutLogEvents",
-      "ec2:CreateNetworkInterface",
-      "ec2:DescribeNetworkInterfaces",
-      "ec2:DeleteNetworkInterface"
-    ]
-    resources = ["*"]
-  }
-
-  statement {
-    sid = "DatadogBucketFullAccess"
-    actions = [
-      "s3:GetObject",
-      "s3:PutObject",
-      "s3:DeleteObject",
-      "s3:ListBucket",
-    ]
-    resources = [
-      module.log_bucket_1.s3_bucket_arn,
-      "${module.log_bucket_1.s3_bucket_arn}/*"
-    ]
-  }
-
-  statement {
-    sid = "GetApiKeySecret"
-    actions = [
-      "secretsmanager:GetSecretValue",
-    ]
-    resources = [
-      data.aws_secretsmanager_secret.datadog_api_key.arn
-    ]
-  }
-}
-
-resource "aws_iam_policy" "custom" {
-  name        = "custom-datadog-log-forwarder"
-  path        = "/"
-  description = "Lambda function to push logs, metrics, and traces to Datadog"
-  policy      = data.aws_iam_policy_document.custom.json
-
-  tags = local.tags
-}
 
 module "default" {
   source = "../../"
@@ -200,6 +155,55 @@ module "default" {
 # Supporting Resources
 ################################################################################
 
+data "aws_iam_policy_document" "custom" {
+  statement {
+    sid = "AnyResourceAccess"
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "tag:GetResources",
+      "logs:PutLogEvents",
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DeleteNetworkInterface"
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    sid = "DatadogBucketFullAccess"
+    actions = [
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:DeleteObject",
+      "s3:ListBucket",
+    ]
+    resources = [
+      module.log_bucket_1.s3_bucket_arn,
+      "${module.log_bucket_1.s3_bucket_arn}/*"
+    ]
+  }
+
+  statement {
+    sid = "GetApiKeySecret"
+    actions = [
+      "secretsmanager:GetSecretValue",
+    ]
+    resources = [
+      data.aws_secretsmanager_secret.datadog_api_key.arn
+    ]
+  }
+}
+
+resource "aws_iam_policy" "custom" {
+  name        = "custom-datadog-log-forwarder"
+  path        = "/"
+  description = "Lambda function to push logs, metrics, and traces to Datadog"
+  policy      = data.aws_iam_policy_document.custom.json
+
+  tags = local.tags
+}
+
 resource "random_pet" "this" {
   length = 2
 }
@@ -233,40 +237,23 @@ resource "aws_kms_alias" "datadog" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 3.0"
+  version = "~> 5.0"
 
   name = local.name
-  cidr = "10.0.0.0/16"
+  cidr = local.vpc_cidr
 
-  azs             = ["us-east-1a", "us-east-1c", "us-east-1d"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+  azs             = local.azs
+  private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k)]
+  public_subnets  = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 48)]
 
-  enable_nat_gateway      = false # not required, using private VPC endpoint
-  single_nat_gateway      = true
-  map_public_ip_on_launch = false
-
-  manage_default_security_group  = true
-  default_security_group_ingress = []
-  default_security_group_egress  = []
-
-  enable_flow_log                      = true
-  flow_log_destination_type            = "cloud-watch-logs"
-  create_flow_log_cloudwatch_log_group = true
-  create_flow_log_cloudwatch_iam_role  = true
-  flow_log_max_aggregation_interval    = 60
-  flow_log_log_format                  = "$${version} $${account-id} $${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport} $${protocol} $${packets} $${bytes} $${start} $${end} $${action} $${log-status} $${vpc-id} $${subnet-id} $${instance-id} $${tcp-flags} $${type} $${pkt-srcaddr} $${pkt-dstaddr} $${region} $${az-id} $${sublocation-type} $${sublocation-id}"
-
-  # Required for VPC Endpoints
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+  enable_nat_gateway = false
 
   tags = local.tags
 }
 
 module "vpc_endpoints" {
   source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
-  version = "~> 3.0"
+  version = "~> 5.0"
 
   vpc_id             = module.vpc.vpc_id
   security_group_ids = [module.security_group.security_group_id]
@@ -287,7 +274,7 @@ module "vpc_endpoints" {
 
 module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name        = local.name
   description = "Example security group"
