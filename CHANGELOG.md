@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.0.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v5.1.0...v6.0.0) (2024-02-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* Bump Terraform and AWS provider MSV to `1.3` and `5.0` respectively, add latest releases and set `3.103.0` as the default version (#36)
+
+### Features
+
+* Bump Terraform and AWS provider MSV to `1.3` and `5.0` respectively, add latest releases and set `3.103.0` as the default version ([#36](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/36)) ([588fbe9](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/588fbe98741f1e17089f0064d0182d252158d1bf))
+
 ## [5.1.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v5.0.1...v5.1.0) (2023-04-21)
 
 
