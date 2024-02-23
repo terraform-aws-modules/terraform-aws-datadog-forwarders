@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.0.1](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v6.0.0...v6.0.1) (2024-02-23)
+
+
+### Bug Fixes
+
+* Change default runtime to python3.11 to support latest forwarder version ([#37](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/37)) ([35805f8](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/35805f851a91312a6a91ded0e93f7b96d6dc732b))
+
 ## [6.0.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v5.1.0...v6.0.0) (2024-02-22)
 
 
