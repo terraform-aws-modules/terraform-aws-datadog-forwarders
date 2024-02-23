@@ -211,7 +211,7 @@ variable "log_forwarder_name" {
 variable "log_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.8"
+  default     = "python3.11"
 }
 
 variable "log_forwarder_layers" {
