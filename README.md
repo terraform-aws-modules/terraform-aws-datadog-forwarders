@@ -150,7 +150,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_log_forwarder_role_path"></a> [log\_forwarder\_role\_path](#input\_log\_forwarder\_role\_path) | Log forwarder role path | `string` | `null` | no |
 | <a name="input_log_forwarder_role_permissions_boundary"></a> [log\_forwarder\_role\_permissions\_boundary](#input\_log\_forwarder\_role\_permissions\_boundary) | The ARN of the policy that is used to set the permissions boundary for the log forwarder role | `string` | `null` | no |
 | <a name="input_log_forwarder_role_tags"></a> [log\_forwarder\_role\_tags](#input\_log\_forwarder\_role\_tags) | A map of tags to apply to the log forwarder role | `map(string)` | `{}` | no |
-| <a name="input_log_forwarder_runtime"></a> [log\_forwarder\_runtime](#input\_log\_forwarder\_runtime) | Lambda function runtime | `string` | `"python3.8"` | no |
+| <a name="input_log_forwarder_runtime"></a> [log\_forwarder\_runtime](#input\_log\_forwarder\_runtime) | Lambda function runtime | `string` | `"python3.11"` | no |
 | <a name="input_log_forwarder_s3_log_bucket_arns"></a> [log\_forwarder\_s3\_log\_bucket\_arns](#input\_log\_forwarder\_s3\_log\_bucket\_arns) | S3 log buckets for forwarder to read and forward logs to Datadog | `list(string)` | `[]` | no |
 | <a name="input_log_forwarder_s3_zip_kms_key_id"></a> [log\_forwarder\_s3\_zip\_kms\_key\_id](#input\_log\_forwarder\_s3\_zip\_kms\_key\_id) | The AWS KMS Key ARN to use for object encryption | `string` | `null` | no |
 | <a name="input_log_forwarder_s3_zip_metadata"></a> [log\_forwarder\_s3\_zip\_metadata](#input\_log\_forwarder\_s3\_zip\_metadata) | A map of keys/values to provision metadata (will be automatically prefixed by `x-amz-meta-` | `map(string)` | `{}` | no |
