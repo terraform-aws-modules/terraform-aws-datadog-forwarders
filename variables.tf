@@ -68,6 +68,12 @@ variable "log_forwarder_bucket_prefix" {
   default     = ""
 }
 
+variable "log_forwarder_bucket_tags" {
+  description = "A map of tags to apply to the log forwarder bucket"
+  type        = map(any)
+  default     = {}
+}
+
 variable "log_forwarder_s3_zip_storage_class" {
   description = "Specifies the desired Storage Class for the zip object. Can be either `STANDARD`, `REDUCED_REDUNDANCY`, `ONEZONE_IA`, `INTELLIGENT_TIERING`, or `STANDARD_IA`"
   type        = string

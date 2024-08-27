@@ -73,6 +73,7 @@ module "default" {
   log_forwarder_role_tags                     = { ForwarderRole = true }
   log_forwarder_s3_log_bucket_arns            = [module.log_bucket_1.s3_bucket_arn, module.log_bucket_2.s3_bucket_arn]
   log_forwarder_tags                          = { LogForwarder = true }
+  log_forwarder_bucket_tags                   = { ForwarderBucket = true }
 
   rds_em_forwarder_name                           = "complete-datadog-rds-forwarder"
   rds_em_forwarder_memory_size                    = 512

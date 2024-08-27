@@ -47,7 +47,7 @@ module "this_s3_bucket" {
     }
   }
 
-  tags = var.tags
+  tags = merge(var.tags, var.bucket_tags)
 }
 
 ################################################################################

@@ -63,6 +63,12 @@ variable "bucket_prefix" {
   default     = ""
 }
 
+variable "bucket_tags" {
+  description = "A map of tags to apply to the bucket"
+  type        = map(string)
+  default     = {}
+}
+
 variable "s3_zip_storage_class" {
   description = "Specifies the desired Storage Class for the zip object. Can be either `STANDARD`, `REDUCED_REDUNDANCY`, `ONEZONE_IA`, `INTELLIGENT_TIERING`, or `STANDARD_IA`"
   type        = string
