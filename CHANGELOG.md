@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.1.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v6.0.2...v6.1.0) (2024-08-28)
+
+
+### Features
+
+* Add variable for applying tags to the log_forwarder bucket ([#41](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/41)) ([37701a0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/37701a060872da245fd35117e0fcb88065f24d36))
+
 ## [6.0.2](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v6.0.1...v6.0.2) (2024-03-07)
 
 
