@@ -60,7 +60,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 - [Complete](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/tree/master/examples/complete)
 - [Simple](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/tree/master/examples/simple)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -106,7 +106,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_api_vpce_subnet_ids"></a> [api\_vpce\_subnet\_ids](#input\_api\_vpce\_subnet\_ids) | IDs of subnets to associate with API endpoint | `list(string)` | `[]` | no |
 | <a name="input_api_vpce_tags"></a> [api\_vpce\_tags](#input\_api\_vpce\_tags) | A map of tags to apply to the API endpoint | `map(string)` | `{}` | no |
 | <a name="input_bucket_attach_deny_insecure_transport_policy"></a> [bucket\_attach\_deny\_insecure\_transport\_policy](#input\_bucket\_attach\_deny\_insecure\_transport\_policy) | Controls if S3 bucket should have deny non-SSL transport policy attacheds | `bool` | `true` | no |
-| <a name="input_bucket_encryption_settings"></a> [bucket\_encryption\_settings](#input\_bucket\_encryption\_settings) | S3 bucket server side encryption settings | `map(string)` | <pre>{<br>  "sse_algorithm": "AES256"<br>}</pre> | no |
+| <a name="input_bucket_encryption_settings"></a> [bucket\_encryption\_settings](#input\_bucket\_encryption\_settings) | S3 bucket server side encryption settings | `map(string)` | <pre>{<br/>  "sse_algorithm": "AES256"<br/>}</pre> | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | Lambda artifact S3 bucket name | `string` | `""` | no |
 | <a name="input_create_agent_vpce"></a> [create\_agent\_vpce](#input\_create\_agent\_vpce) | Controls whether an agent endpoint should be created | `bool` | `false` | no |
 | <a name="input_create_api_vpce"></a> [create\_api\_vpce](#input\_create\_api\_vpce) | Controls whether a API endpoint should be created | `bool` | `false` | no |
@@ -129,7 +129,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_dd_app_key"></a> [dd\_app\_key](#input\_dd\_app\_key) | The Datadog application key associated with the user account that created it, which can be found from the APIs page | `string` | `""` | no |
 | <a name="input_dd_site"></a> [dd\_site](#input\_dd\_site) | Define your Datadog Site to send data to. For the Datadog EU site, set to datadoghq.eu | `string` | `"datadoghq.com"` | no |
 | <a name="input_kms_alias"></a> [kms\_alias](#input\_kms\_alias) | Alias of KMS key used to encrypt the Datadog API keys - must start with `alias/` | `string` | n/a | yes |
-| <a name="input_log_forwarder_architectures"></a> [log\_forwarder\_architectures](#input\_log\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br>  "x86_64"<br>]</pre> | no |
+| <a name="input_log_forwarder_architectures"></a> [log\_forwarder\_architectures](#input\_log\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br/>  "x86_64"<br/>]</pre> | no |
 | <a name="input_log_forwarder_bucket_prefix"></a> [log\_forwarder\_bucket\_prefix](#input\_log\_forwarder\_bucket\_prefix) | S3 object key prefix to prepend to zip archive name | `string` | `""` | no |
 | <a name="input_log_forwarder_bucket_tags"></a> [log\_forwarder\_bucket\_tags](#input\_log\_forwarder\_bucket\_tags) | A map of tags to apply to the log forwarder bucket | `map(any)` | `{}` | no |
 | <a name="input_log_forwarder_environment_variables"></a> [log\_forwarder\_environment\_variables](#input\_log\_forwarder\_environment\_variables) | A map of environment variables for the log forwarder lambda function | `map(string)` | `{}` | no |
@@ -178,7 +178,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_processes_vpce_security_group_ids"></a> [processes\_vpce\_security\_group\_ids](#input\_processes\_vpce\_security\_group\_ids) | IDs of security groups to attach to processes endpoint | `list(string)` | `[]` | no |
 | <a name="input_processes_vpce_subnet_ids"></a> [processes\_vpce\_subnet\_ids](#input\_processes\_vpce\_subnet\_ids) | IDs of subnets to associate with processes endpoint | `list(string)` | `[]` | no |
 | <a name="input_processes_vpce_tags"></a> [processes\_vpce\_tags](#input\_processes\_vpce\_tags) | A map of tags to apply to the processes endpoint | `map(string)` | `{}` | no |
-| <a name="input_rds_em_forwarder_architectures"></a> [rds\_em\_forwarder\_architectures](#input\_rds\_em\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br>  "x86_64"<br>]</pre> | no |
+| <a name="input_rds_em_forwarder_architectures"></a> [rds\_em\_forwarder\_architectures](#input\_rds\_em\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br/>  "x86_64"<br/>]</pre> | no |
 | <a name="input_rds_em_forwarder_environment_variables"></a> [rds\_em\_forwarder\_environment\_variables](#input\_rds\_em\_forwarder\_environment\_variables) | A map of environment variables for the RDS enhanced monitoring forwarder lambda function | `map(string)` | `{}` | no |
 | <a name="input_rds_em_forwarder_kms_key_arn"></a> [rds\_em\_forwarder\_kms\_key\_arn](#input\_rds\_em\_forwarder\_kms\_key\_arn) | KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key | `string` | `null` | no |
 | <a name="input_rds_em_forwarder_lambda_tags"></a> [rds\_em\_forwarder\_lambda\_tags](#input\_rds\_em\_forwarder\_lambda\_tags) | A map of tags to apply to the RDS enhanced monitoring forwarder lambda function | `map(string)` | `{}` | no |
@@ -211,7 +211,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_traces_vpce_security_group_ids"></a> [traces\_vpce\_security\_group\_ids](#input\_traces\_vpce\_security\_group\_ids) | IDs of security groups to attach to traces endpoint | `list(string)` | `[]` | no |
 | <a name="input_traces_vpce_subnet_ids"></a> [traces\_vpce\_subnet\_ids](#input\_traces\_vpce\_subnet\_ids) | IDs of subnets to associate with traces endpoint | `list(string)` | `[]` | no |
 | <a name="input_traces_vpce_tags"></a> [traces\_vpce\_tags](#input\_traces\_vpce\_tags) | A map of tags to apply to the traces endpoint | `map(string)` | `{}` | no |
-| <a name="input_vpc_fl_forwarder_architectures"></a> [vpc\_fl\_forwarder\_architectures](#input\_vpc\_fl\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br>  "x86_64"<br>]</pre> | no |
+| <a name="input_vpc_fl_forwarder_architectures"></a> [vpc\_fl\_forwarder\_architectures](#input\_vpc\_fl\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br/>  "x86_64"<br/>]</pre> | no |
 | <a name="input_vpc_fl_forwarder_environment_variables"></a> [vpc\_fl\_forwarder\_environment\_variables](#input\_vpc\_fl\_forwarder\_environment\_variables) | A map of environment variables for the VPC flow log forwarder lambda function | `map(string)` | `{}` | no |
 | <a name="input_vpc_fl_forwarder_kms_key_arn"></a> [vpc\_fl\_forwarder\_kms\_key\_arn](#input\_vpc\_fl\_forwarder\_kms\_key\_arn) | KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key | `string` | `null` | no |
 | <a name="input_vpc_fl_forwarder_lambda_tags"></a> [vpc\_fl\_forwarder\_lambda\_tags](#input\_vpc\_fl\_forwarder\_lambda\_tags) | A map of tags to apply to the VPC flow log forwarder lambda function | `map(string)` | `{}` | no |
@@ -329,7 +329,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="output_vpc_fl_forwarder_role_policy_id"></a> [vpc\_fl\_forwarder\_role\_policy\_id](#output\_vpc\_fl\_forwarder\_role\_policy\_id) | The ID of the VPC flow log forwarder lambda role policy |
 | <a name="output_vpc_fl_forwarder_role_policy_name"></a> [vpc\_fl\_forwarder\_role\_policy\_name](#output\_vpc\_fl\_forwarder\_role\_policy\_name) | The name of the VPC flow log forwarder lambda role policy |
 | <a name="output_vpc_fl_forwarder_role_unique_id"></a> [vpc\_fl\_forwarder\_role\_unique\_id](#output\_vpc\_fl\_forwarder\_role\_unique\_id) | The stable and unique string identifying the VPC flow log forwarder lambda role. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## License
 

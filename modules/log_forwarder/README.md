@@ -36,7 +36,7 @@ module "datadog_log_forwarder" {
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -79,9 +79,9 @@ module "datadog_log_forwarder" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_architectures"></a> [architectures](#input\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br>  "x86_64"<br>]</pre> | no |
+| <a name="input_architectures"></a> [architectures](#input\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br/>  "x86_64"<br/>]</pre> | no |
 | <a name="input_bucket_attach_deny_insecure_transport_policy"></a> [bucket\_attach\_deny\_insecure\_transport\_policy](#input\_bucket\_attach\_deny\_insecure\_transport\_policy) | Controls if S3 bucket should have deny non-SSL transport policy attacheds | `bool` | `false` | no |
-| <a name="input_bucket_encryption_settings"></a> [bucket\_encryption\_settings](#input\_bucket\_encryption\_settings) | S3 bucket server side encryption settings | `map(string)` | <pre>{<br>  "sse_algorithm": "AES256"<br>}</pre> | no |
+| <a name="input_bucket_encryption_settings"></a> [bucket\_encryption\_settings](#input\_bucket\_encryption\_settings) | S3 bucket server side encryption settings | `map(string)` | <pre>{<br/>  "sse_algorithm": "AES256"<br/>}</pre> | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | Forwarder S3 bucket name | `string` | `""` | no |
 | <a name="input_bucket_prefix"></a> [bucket\_prefix](#input\_bucket\_prefix) | S3 object key prefix to prepend to zip archive name | `string` | `""` | no |
 | <a name="input_bucket_tags"></a> [bucket\_tags](#input\_bucket\_tags) | A map of tags to apply to the bucket | `map(string)` | `{}` | no |
@@ -151,7 +151,7 @@ module "datadog_log_forwarder" {
 | <a name="output_s3_object_etag"></a> [s3\_object\_etag](#output\_s3\_object\_etag) | The ETag generated for the forwarder lambda zip object (an MD5 sum of the object content) |
 | <a name="output_s3_object_id"></a> [s3\_object\_id](#output\_s3\_object\_id) | The `key` of the forwarder lambda zip archive |
 | <a name="output_s3_object_version"></a> [s3\_object\_version](#output\_s3\_object\_version) | A unique version ID value for the forwarder lambda zip object, if bucket versioning is enabled |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## License
 
