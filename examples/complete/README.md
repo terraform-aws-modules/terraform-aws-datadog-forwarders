@@ -18,7 +18,7 @@ $ terraform apply
 
 Note that this example may create resources which will incur monetary charges on your AWS bill. Run `terraform destroy` when you no longer need these resources.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -132,6 +132,6 @@ No inputs.
 | <a name="output_vpc_fl_forwarder_role_name"></a> [vpc\_fl\_forwarder\_role\_name](#output\_vpc\_fl\_forwarder\_role\_name) | The VPC flow log forwarder lambda role name |
 | <a name="output_vpc_fl_forwarder_role_policy_arn"></a> [vpc\_fl\_forwarder\_role\_policy\_arn](#output\_vpc\_fl\_forwarder\_role\_policy\_arn) | The ARN of the VPC flow log forwarder lambda role policy |
 | <a name="output_vpc_fl_forwarder_role_policy_name"></a> [vpc\_fl\_forwarder\_role\_policy\_name](#output\_vpc\_fl\_forwarder\_role\_policy\_name) | The name of the VPC flow log forwarder lambda role policy |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 Apache-2.0 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/blob/master/LICENSE).
