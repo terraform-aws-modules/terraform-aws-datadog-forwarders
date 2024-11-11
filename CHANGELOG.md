@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.2.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v6.1.0...v6.2.0) (2024-11-11)
+
+
+### Features
+
+* Vendor latest versions and set default version to `v3.130.0` ([#47](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/47)) ([8c8d16e](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/8c8d16eccaf62ddc432fd4d8f407599b1a658eb1))
+
+
+### Bug Fixes
+
+* Update CI workflow versions to latest ([#46](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/46)) ([9db882b](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/9db882bfb87b9a58ac8d830cda0a22101f4bd362))
+
 ## [6.1.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v6.0.2...v6.1.0) (2024-08-28)
 
 
