@@ -131,7 +131,7 @@ resource "aws_lambda_permission" "cloudwatch" {
   statement_id   = "datadog-forwarder-CloudWatchLogsPermission"
   action         = "lambda:InvokeFunction"
   function_name  = aws_lambda_function.this[0].function_name
-  principal      = "logs.${data.aws_region.current.name}.amazonaws.com"
+  principal      = "logs.${data.aws_region.current.region}.amazonaws.com"
   source_account = data.aws_caller_identity.current.account_id
 }
 

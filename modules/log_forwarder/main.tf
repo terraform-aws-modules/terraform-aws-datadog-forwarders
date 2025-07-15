@@ -1,5 +1,5 @@
 locals {
-  bucket_name = var.bucket_name != "" ? var.bucket_name : "datadog-forwarder-${data.aws_caller_identity.current.account_id}-${data.aws_region.current.name}"
+  bucket_name = var.bucket_name != "" ? var.bucket_name : "datadog-forwarder-${data.aws_caller_identity.current.account_id}-${data.aws_region.current.region}"
 
   dd_api_key            = var.dd_api_key != "" ? { DD_API_KEY = var.dd_api_key } : {}
   dd_api_key_secret_arn = var.dd_api_key_secret_arn != "" ? { DD_API_KEY_SECRET_ARN = var.dd_api_key_secret_arn } : {}
@@ -205,7 +205,7 @@ resource "aws_lambda_permission" "cloudwatch" {
   statement_id   = "datadog-forwarder-CloudWatchLogsPermission"
   action         = "lambda:InvokeFunction"
   function_name  = aws_lambda_function.this[0].function_name
-  principal      = "logs.${data.aws_region.current.name}.amazonaws.com"
+  principal      = "logs.${data.aws_region.current.region}.amazonaws.com"
   source_account = data.aws_caller_identity.current.account_id
 }
 

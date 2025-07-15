@@ -124,7 +124,7 @@ resource "aws_lambda_permission" "cloudwatch" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this[0].function_name
   principal     = "logs.amazonaws.com"
-  source_arn    = "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:RDSOSMetrics:*"
+  source_arn    = "arn:aws:logs:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:log-group:RDSOSMetrics:*"
 }
 
 resource "aws_cloudwatch_log_group" "this" {
