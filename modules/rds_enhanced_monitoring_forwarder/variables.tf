@@ -61,13 +61,13 @@ variable "role_path" {
 }
 
 variable "role_max_session_duration" {
-  description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours."
+  description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours"
   type        = number
   default     = null
 }
 
 variable "role_permissions_boundary" {
-  description = "The ARN of the policy that is used to set the permissions boundary for the forwarder role."
+  description = "The ARN of the policy that is used to set the permissions boundary for the forwarder role"
   type        = string
   default     = null
 }
@@ -112,7 +112,7 @@ variable "policy_path" {
 variable "forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.130.0"
+  default     = "4.12.0"
 }
 
 variable "name" {
@@ -124,7 +124,7 @@ variable "name" {
 variable "runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.11"
+  default     = "python3.12"
 }
 
 variable "layers" {
@@ -152,9 +152,9 @@ variable "publish" {
 }
 
 variable "architectures" {
-  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"arm64\"]`"
   type        = list(string)
-  default     = ["x86_64"]
+  default     = ["arm64"]
 }
 
 variable "reserved_concurrent_executions" {
@@ -170,13 +170,13 @@ variable "kms_key_arn" {
 }
 
 variable "subnet_ids" {
-  description = "List of subnet ids when Lambda Function should run in the VPC. Usually private or intra subnets."
+  description = "List of subnet ids when Lambda Function should run in the VPC. Usually private or intra subnets"
   type        = list(string)
   default     = null
 }
 
 variable "security_group_ids" {
-  description = "List of security group ids when Lambda Function should run in the VPC."
+  description = "List of security group ids when Lambda Function should run in the VPC"
   type        = list(string)
   default     = null
 }

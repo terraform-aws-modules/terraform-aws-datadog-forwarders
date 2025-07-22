@@ -194,7 +194,7 @@ variable "s3_log_bucket_arns" {
 variable "forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.130.0"
+  default     = "4.12.0"
 }
 
 variable "name" {
@@ -206,7 +206,7 @@ variable "name" {
 variable "runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.11"
+  default     = "python3.12"
 }
 
 variable "layers" {
@@ -234,9 +234,9 @@ variable "publish" {
 }
 
 variable "architectures" {
-  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"arm64\"]`"
   type        = list(string)
-  default     = ["x86_64"]
+  default     = ["arm64"]
 }
 
 variable "reserved_concurrent_executions" {

@@ -199,7 +199,7 @@ variable "log_forwarder_s3_log_bucket_arns" {
 variable "log_forwarder_version" {
   description = "Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.130.0"
+  default     = "4.12.0"
 }
 
 variable "create_log_forwarder" {
@@ -217,7 +217,7 @@ variable "log_forwarder_name" {
 variable "log_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.11"
+  default     = "python3.12"
 }
 
 variable "log_forwarder_layers" {
@@ -245,9 +245,9 @@ variable "log_forwarder_publish" {
 }
 
 variable "log_forwarder_architectures" {
-  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"arm64\"]`"
   type        = list(string)
-  default     = ["x86_64"]
+  default     = ["arm64"]
 }
 
 variable "log_forwarder_reserved_concurrent_executions" {
@@ -387,7 +387,7 @@ variable "rds_em_forwarder_policy_path" {
 variable "rds_em_forwarder_version" {
   description = "RDS enhanced monitoring lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.130.0"
+  default     = "4.12.0"
 }
 
 variable "create_rds_em_forwarder" {
@@ -405,7 +405,7 @@ variable "rds_em_forwarder_name" {
 variable "rds_em_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.8"
+  default     = "python3.12"
 }
 
 variable "rds_em_forwarder_layers" {
@@ -433,9 +433,9 @@ variable "rds_em_forwarder_publish" {
 }
 
 variable "rds_em_forwarder_architectures" {
-  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"arm64\"]`"
   type        = list(string)
-  default     = ["x86_64"]
+  default     = ["arm64"]
 }
 
 variable "rds_em_forwarder_reserved_concurrent_executions" {
@@ -587,7 +587,7 @@ variable "vpc_fl_forwarder_read_cloudwatch_logs" {
 variable "vpc_fl_forwarder_version" {
   description = "VPC flow log lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases"
   type        = string
-  default     = "3.130.0"
+  default     = "4.12.0"
 }
 
 variable "create_vpc_fl_forwarder" {
@@ -605,7 +605,7 @@ variable "vpc_fl_forwarder_name" {
 variable "vpc_fl_forwarder_runtime" {
   description = "Lambda function runtime"
   type        = string
-  default     = "python3.8"
+  default     = "python3.12"
 }
 
 variable "vpc_fl_forwarder_layers" {
@@ -633,9 +633,9 @@ variable "vpc_fl_forwarder_publish" {
 }
 
 variable "vpc_fl_forwarder_architectures" {
-  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"x86_64\"]`"
+  description = "Instruction set architecture for your Lambda function. Valid values are `[\"x86_64\"]` and `[\"arm64\"]`. Default is `[\"arm64\"]`"
   type        = list(string)
-  default     = ["x86_64"]
+  default     = ["arm64"]
 }
 
 variable "vpc_fl_forwarder_reserved_concurrent_executions" {
