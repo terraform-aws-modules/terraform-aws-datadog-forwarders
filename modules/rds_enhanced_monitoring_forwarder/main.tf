@@ -9,14 +9,24 @@ locals {
   policy_name = coalesce(var.policy_name, var.name)
 }
 
-data "aws_caller_identity" "current" {}
-data "aws_region" "current" {}
+data "aws_caller_identity" "current" {
+  count = var.create ? 1 : 0
+}
+data "aws_region" "current" {
+  count = var.create ? 1 : 0
+}
 
 ################################################################################
 # Forwarder IAM Role
 ################################################################################
 
+locals {
+  create_role = var.create && var.create_role
+}
+
 data "aws_iam_policy_document" "this" {
+  count = local.create_role ? 1 : 0
+
   statement {
     actions = [
       "sts:AssumeRole",
@@ -30,14 +40,14 @@ data "aws_iam_policy_document" "this" {
 }
 
 resource "aws_iam_role" "this" {
-  count = var.create && var.create_role ? 1 : 0
+  count = local.create_role ? 1 : 0
 
   name        = var.use_role_name_prefix ? null : local.role_name
   name_prefix = var.use_role_name_prefix ? "${local.role_name}-" : null
   description = local.description
   path        = var.role_path
 
-  assume_role_policy    = data.aws_iam_policy_document.this.json
+  assume_role_policy    = data.aws_iam_policy_document.this[0].json
   max_session_duration  = var.role_max_session_duration
   permissions_boundary  = var.role_permissions_boundary
   force_detach_policies = true
@@ -46,7 +56,7 @@ resource "aws_iam_role" "this" {
 }
 
 resource "aws_iam_policy" "this" {
-  count = var.create && var.create_role_policy ? 1 : 0
+  count = local.create_role && var.create_role_policy ? 1 : 0
 
   name        = var.use_policy_name_prefix ? null : local.policy_name
   name_prefix = var.use_policy_name_prefix ? "${local.policy_name}-" : null
@@ -65,7 +75,7 @@ resource "aws_iam_policy" "this" {
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
-  count = var.create && var.create_role ? 1 : 0
+  count = local.create_role ? 1 : 0
 
   role       = aws_iam_role.this[0].id
   policy_arn = var.create_role_policy ? aws_iam_policy.this[0].id : var.policy_arn
@@ -124,7 +134,7 @@ resource "aws_lambda_permission" "cloudwatch" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this[0].function_name
   principal     = "logs.amazonaws.com"
-  source_arn    = "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:RDSOSMetrics:*"
+  source_arn    = "arn:aws:logs:${data.aws_region.current[0].region}:${data.aws_caller_identity.current[0].account_id}:log-group:RDSOSMetrics:*"
 }
 
 resource "aws_cloudwatch_log_group" "this" {

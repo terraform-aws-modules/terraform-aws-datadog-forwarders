@@ -5,7 +5,7 @@ cd $(dirname $0)
 BASE_URL='https://raw.githubusercontent.com/DataDog/datadog-serverless-functions'
 REFS_URL='https://api.github.com/repos/DataDog/datadog-serverless-functions/git/refs/tags'
 
-for VERSION in $(curl $REFS_URL | jq '.[].ref' | grep -o '3\.[0-9]*\.[0-9]')
+for VERSION in $(curl $REFS_URL | jq '.[].ref' | grep -o '4\.[0-9]*\.[0-9]')
 do
   rds_enhanced_monitoring="${BASE_URL}/aws-dd-forwarder-${VERSION}/aws/rds_enhanced_monitoring/lambda_function.py"
   vpc_flow_log_monitoring="${BASE_URL}/aws-dd-forwarder-${VERSION}/aws/vpc_flow_log_monitoring/lambda_function.py"

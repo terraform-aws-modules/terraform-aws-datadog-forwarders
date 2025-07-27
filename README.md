@@ -65,14 +65,14 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.0 |
 
 ## Modules
 
@@ -129,7 +129,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_dd_app_key"></a> [dd\_app\_key](#input\_dd\_app\_key) | The Datadog application key associated with the user account that created it, which can be found from the APIs page | `string` | `""` | no |
 | <a name="input_dd_site"></a> [dd\_site](#input\_dd\_site) | Define your Datadog Site to send data to. For the Datadog EU site, set to datadoghq.eu | `string` | `"datadoghq.com"` | no |
 | <a name="input_kms_alias"></a> [kms\_alias](#input\_kms\_alias) | Alias of KMS key used to encrypt the Datadog API keys - must start with `alias/` | `string` | n/a | yes |
-| <a name="input_log_forwarder_architectures"></a> [log\_forwarder\_architectures](#input\_log\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br/>  "x86_64"<br/>]</pre> | no |
+| <a name="input_log_forwarder_architectures"></a> [log\_forwarder\_architectures](#input\_log\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["arm64"]` | `list(string)` | <pre>[<br/>  "arm64"<br/>]</pre> | no |
 | <a name="input_log_forwarder_bucket_prefix"></a> [log\_forwarder\_bucket\_prefix](#input\_log\_forwarder\_bucket\_prefix) | S3 object key prefix to prepend to zip archive name | `string` | `""` | no |
 | <a name="input_log_forwarder_bucket_tags"></a> [log\_forwarder\_bucket\_tags](#input\_log\_forwarder\_bucket\_tags) | A map of tags to apply to the log forwarder bucket | `map(any)` | `{}` | no |
 | <a name="input_log_forwarder_environment_variables"></a> [log\_forwarder\_environment\_variables](#input\_log\_forwarder\_environment\_variables) | A map of environment variables for the log forwarder lambda function | `map(string)` | `{}` | no |
@@ -151,7 +151,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_log_forwarder_role_path"></a> [log\_forwarder\_role\_path](#input\_log\_forwarder\_role\_path) | Log forwarder role path | `string` | `null` | no |
 | <a name="input_log_forwarder_role_permissions_boundary"></a> [log\_forwarder\_role\_permissions\_boundary](#input\_log\_forwarder\_role\_permissions\_boundary) | The ARN of the policy that is used to set the permissions boundary for the log forwarder role | `string` | `null` | no |
 | <a name="input_log_forwarder_role_tags"></a> [log\_forwarder\_role\_tags](#input\_log\_forwarder\_role\_tags) | A map of tags to apply to the log forwarder role | `map(string)` | `{}` | no |
-| <a name="input_log_forwarder_runtime"></a> [log\_forwarder\_runtime](#input\_log\_forwarder\_runtime) | Lambda function runtime | `string` | `"python3.11"` | no |
+| <a name="input_log_forwarder_runtime"></a> [log\_forwarder\_runtime](#input\_log\_forwarder\_runtime) | Lambda function runtime | `string` | `"python3.12"` | no |
 | <a name="input_log_forwarder_s3_log_bucket_arns"></a> [log\_forwarder\_s3\_log\_bucket\_arns](#input\_log\_forwarder\_s3\_log\_bucket\_arns) | S3 log buckets for forwarder to read and forward logs to Datadog | `list(string)` | `[]` | no |
 | <a name="input_log_forwarder_s3_zip_kms_key_id"></a> [log\_forwarder\_s3\_zip\_kms\_key\_id](#input\_log\_forwarder\_s3\_zip\_kms\_key\_id) | The AWS KMS Key ARN to use for object encryption | `string` | `null` | no |
 | <a name="input_log_forwarder_s3_zip_metadata"></a> [log\_forwarder\_s3\_zip\_metadata](#input\_log\_forwarder\_s3\_zip\_metadata) | A map of keys/values to provision metadata (will be automatically prefixed by `x-amz-meta-` | `map(string)` | `{}` | no |
@@ -165,7 +165,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_log_forwarder_timeout"></a> [log\_forwarder\_timeout](#input\_log\_forwarder\_timeout) | The amount of time the log forwarder lambda has to execute in seconds | `number` | `120` | no |
 | <a name="input_log_forwarder_use_policy_name_prefix"></a> [log\_forwarder\_use\_policy\_name\_prefix](#input\_log\_forwarder\_use\_policy\_name\_prefix) | Whether to use unique name beginning with the specified `policy_name` for the log forwarder policy | `bool` | `false` | no |
 | <a name="input_log_forwarder_use_role_name_prefix"></a> [log\_forwarder\_use\_role\_name\_prefix](#input\_log\_forwarder\_use\_role\_name\_prefix) | Whether to use unique name beginning with the specified `role_name` for the log forwarder role | `bool` | `false` | no |
-| <a name="input_log_forwarder_version"></a> [log\_forwarder\_version](#input\_log\_forwarder\_version) | Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.130.0"` | no |
+| <a name="input_log_forwarder_version"></a> [log\_forwarder\_version](#input\_log\_forwarder\_version) | Forwarder version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"4.12.0"` | no |
 | <a name="input_log_forwarder_vpce_policy"></a> [log\_forwarder\_vpce\_policy](#input\_log\_forwarder\_vpce\_policy) | Policy to attach to the log forwarder endpoint that controls access to the service. Defaults to full access | `any` | `null` | no |
 | <a name="input_log_forwarder_vpce_security_group_ids"></a> [log\_forwarder\_vpce\_security\_group\_ids](#input\_log\_forwarder\_vpce\_security\_group\_ids) | IDs of security groups to attach to log forwarder endpoint | `list(string)` | `[]` | no |
 | <a name="input_log_forwarder_vpce_subnet_ids"></a> [log\_forwarder\_vpce\_subnet\_ids](#input\_log\_forwarder\_vpce\_subnet\_ids) | IDs of subnets to associate with log forwarder endpoint | `list(string)` | `[]` | no |
@@ -178,7 +178,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_processes_vpce_security_group_ids"></a> [processes\_vpce\_security\_group\_ids](#input\_processes\_vpce\_security\_group\_ids) | IDs of security groups to attach to processes endpoint | `list(string)` | `[]` | no |
 | <a name="input_processes_vpce_subnet_ids"></a> [processes\_vpce\_subnet\_ids](#input\_processes\_vpce\_subnet\_ids) | IDs of subnets to associate with processes endpoint | `list(string)` | `[]` | no |
 | <a name="input_processes_vpce_tags"></a> [processes\_vpce\_tags](#input\_processes\_vpce\_tags) | A map of tags to apply to the processes endpoint | `map(string)` | `{}` | no |
-| <a name="input_rds_em_forwarder_architectures"></a> [rds\_em\_forwarder\_architectures](#input\_rds\_em\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br/>  "x86_64"<br/>]</pre> | no |
+| <a name="input_rds_em_forwarder_architectures"></a> [rds\_em\_forwarder\_architectures](#input\_rds\_em\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["arm64"]` | `list(string)` | <pre>[<br/>  "arm64"<br/>]</pre> | no |
 | <a name="input_rds_em_forwarder_environment_variables"></a> [rds\_em\_forwarder\_environment\_variables](#input\_rds\_em\_forwarder\_environment\_variables) | A map of environment variables for the RDS enhanced monitoring forwarder lambda function | `map(string)` | `{}` | no |
 | <a name="input_rds_em_forwarder_kms_key_arn"></a> [rds\_em\_forwarder\_kms\_key\_arn](#input\_rds\_em\_forwarder\_kms\_key\_arn) | KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key | `string` | `null` | no |
 | <a name="input_rds_em_forwarder_lambda_tags"></a> [rds\_em\_forwarder\_lambda\_tags](#input\_rds\_em\_forwarder\_lambda\_tags) | A map of tags to apply to the RDS enhanced monitoring forwarder lambda function | `map(string)` | `{}` | no |
@@ -198,20 +198,20 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_rds_em_forwarder_role_path"></a> [rds\_em\_forwarder\_role\_path](#input\_rds\_em\_forwarder\_role\_path) | RDS enhanced monitoring forwarder role path | `string` | `null` | no |
 | <a name="input_rds_em_forwarder_role_permissions_boundary"></a> [rds\_em\_forwarder\_role\_permissions\_boundary](#input\_rds\_em\_forwarder\_role\_permissions\_boundary) | The ARN of the policy that is used to set the permissions boundary for the RDS enhanced monitoring forwarder role | `string` | `null` | no |
 | <a name="input_rds_em_forwarder_role_tags"></a> [rds\_em\_forwarder\_role\_tags](#input\_rds\_em\_forwarder\_role\_tags) | A map of tags to apply to the RDS enhanced monitoring forwarder role | `map(string)` | `{}` | no |
-| <a name="input_rds_em_forwarder_runtime"></a> [rds\_em\_forwarder\_runtime](#input\_rds\_em\_forwarder\_runtime) | Lambda function runtime | `string` | `"python3.8"` | no |
+| <a name="input_rds_em_forwarder_runtime"></a> [rds\_em\_forwarder\_runtime](#input\_rds\_em\_forwarder\_runtime) | Lambda function runtime | `string` | `"python3.12"` | no |
 | <a name="input_rds_em_forwarder_security_group_ids"></a> [rds\_em\_forwarder\_security\_group\_ids](#input\_rds\_em\_forwarder\_security\_group\_ids) | List of security group ids when forwarder lambda function should run in the VPC | `list(string)` | `null` | no |
 | <a name="input_rds_em_forwarder_subnet_ids"></a> [rds\_em\_forwarder\_subnet\_ids](#input\_rds\_em\_forwarder\_subnet\_ids) | List of subnet ids when forwarder lambda function should run in the VPC. Usually private or intra subnets | `list(string)` | `null` | no |
 | <a name="input_rds_em_forwarder_tags"></a> [rds\_em\_forwarder\_tags](#input\_rds\_em\_forwarder\_tags) | A map of tags to apply to the RDS enhanced monitoring forwarder resources | `map(string)` | `{}` | no |
 | <a name="input_rds_em_forwarder_timeout"></a> [rds\_em\_forwarder\_timeout](#input\_rds\_em\_forwarder\_timeout) | The amount of time the RDS enhanced monitoring forwarder lambda has to execute in seconds | `number` | `10` | no |
 | <a name="input_rds_em_forwarder_use_policy_name_prefix"></a> [rds\_em\_forwarder\_use\_policy\_name\_prefix](#input\_rds\_em\_forwarder\_use\_policy\_name\_prefix) | Whether to use unique name beginning with the specified `rds_em_forwarder_policy_name` for the RDS enhanced monitoring forwarder role | `bool` | `false` | no |
 | <a name="input_rds_em_forwarder_use_role_name_prefix"></a> [rds\_em\_forwarder\_use\_role\_name\_prefix](#input\_rds\_em\_forwarder\_use\_role\_name\_prefix) | Whether to use unique name beginning with the specified `rds_em_forwarder_role_name` for the RDS enhanced monitoring forwarder role | `bool` | `false` | no |
-| <a name="input_rds_em_forwarder_version"></a> [rds\_em\_forwarder\_version](#input\_rds\_em\_forwarder\_version) | RDS enhanced monitoring lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.130.0"` | no |
+| <a name="input_rds_em_forwarder_version"></a> [rds\_em\_forwarder\_version](#input\_rds\_em\_forwarder\_version) | RDS enhanced monitoring lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"4.12.0"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to use on all resources | `map(string)` | `{}` | no |
 | <a name="input_traces_vpce_policy"></a> [traces\_vpce\_policy](#input\_traces\_vpce\_policy) | Policy to attach to the traces endpoint that controls access to the service. Defaults to full access | `any` | `null` | no |
 | <a name="input_traces_vpce_security_group_ids"></a> [traces\_vpce\_security\_group\_ids](#input\_traces\_vpce\_security\_group\_ids) | IDs of security groups to attach to traces endpoint | `list(string)` | `[]` | no |
 | <a name="input_traces_vpce_subnet_ids"></a> [traces\_vpce\_subnet\_ids](#input\_traces\_vpce\_subnet\_ids) | IDs of subnets to associate with traces endpoint | `list(string)` | `[]` | no |
 | <a name="input_traces_vpce_tags"></a> [traces\_vpce\_tags](#input\_traces\_vpce\_tags) | A map of tags to apply to the traces endpoint | `map(string)` | `{}` | no |
-| <a name="input_vpc_fl_forwarder_architectures"></a> [vpc\_fl\_forwarder\_architectures](#input\_vpc\_fl\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["x86_64"]` | `list(string)` | <pre>[<br/>  "x86_64"<br/>]</pre> | no |
+| <a name="input_vpc_fl_forwarder_architectures"></a> [vpc\_fl\_forwarder\_architectures](#input\_vpc\_fl\_forwarder\_architectures) | Instruction set architecture for your Lambda function. Valid values are `["x86_64"]` and `["arm64"]`. Default is `["arm64"]` | `list(string)` | <pre>[<br/>  "arm64"<br/>]</pre> | no |
 | <a name="input_vpc_fl_forwarder_environment_variables"></a> [vpc\_fl\_forwarder\_environment\_variables](#input\_vpc\_fl\_forwarder\_environment\_variables) | A map of environment variables for the VPC flow log forwarder lambda function | `map(string)` | `{}` | no |
 | <a name="input_vpc_fl_forwarder_kms_key_arn"></a> [vpc\_fl\_forwarder\_kms\_key\_arn](#input\_vpc\_fl\_forwarder\_kms\_key\_arn) | KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key | `string` | `null` | no |
 | <a name="input_vpc_fl_forwarder_lambda_tags"></a> [vpc\_fl\_forwarder\_lambda\_tags](#input\_vpc\_fl\_forwarder\_lambda\_tags) | A map of tags to apply to the VPC flow log forwarder lambda function | `map(string)` | `{}` | no |
@@ -232,7 +232,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_vpc_fl_forwarder_role_path"></a> [vpc\_fl\_forwarder\_role\_path](#input\_vpc\_fl\_forwarder\_role\_path) | VPC flow log forwarder role path | `string` | `null` | no |
 | <a name="input_vpc_fl_forwarder_role_permissions_boundary"></a> [vpc\_fl\_forwarder\_role\_permissions\_boundary](#input\_vpc\_fl\_forwarder\_role\_permissions\_boundary) | The ARN of the policy that is used to set the permissions boundary for the VPC flow log forwarder role | `string` | `null` | no |
 | <a name="input_vpc_fl_forwarder_role_tags"></a> [vpc\_fl\_forwarder\_role\_tags](#input\_vpc\_fl\_forwarder\_role\_tags) | A map of tags to apply to the VPC flow log forwarder role | `map(string)` | `{}` | no |
-| <a name="input_vpc_fl_forwarder_runtime"></a> [vpc\_fl\_forwarder\_runtime](#input\_vpc\_fl\_forwarder\_runtime) | Lambda function runtime | `string` | `"python3.8"` | no |
+| <a name="input_vpc_fl_forwarder_runtime"></a> [vpc\_fl\_forwarder\_runtime](#input\_vpc\_fl\_forwarder\_runtime) | Lambda function runtime | `string` | `"python3.12"` | no |
 | <a name="input_vpc_fl_forwarder_s3_log_bucket_arns"></a> [vpc\_fl\_forwarder\_s3\_log\_bucket\_arns](#input\_vpc\_fl\_forwarder\_s3\_log\_bucket\_arns) | S3 log buckets for VPC flow log forwarder to read and forward to Datadog | `list(string)` | `[]` | no |
 | <a name="input_vpc_fl_forwarder_security_group_ids"></a> [vpc\_fl\_forwarder\_security\_group\_ids](#input\_vpc\_fl\_forwarder\_security\_group\_ids) | List of security group ids when forwarder lambda function should run in the VPC | `list(string)` | `null` | no |
 | <a name="input_vpc_fl_forwarder_subnet_ids"></a> [vpc\_fl\_forwarder\_subnet\_ids](#input\_vpc\_fl\_forwarder\_subnet\_ids) | List of subnet ids when forwarder lambda function should run in the VPC. Usually private or intra subnets | `list(string)` | `null` | no |
@@ -240,7 +240,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | <a name="input_vpc_fl_forwarder_timeout"></a> [vpc\_fl\_forwarder\_timeout](#input\_vpc\_fl\_forwarder\_timeout) | The amount of time the VPC flow log forwarder lambda has to execute in seconds | `number` | `10` | no |
 | <a name="input_vpc_fl_forwarder_use_policy_name_prefix"></a> [vpc\_fl\_forwarder\_use\_policy\_name\_prefix](#input\_vpc\_fl\_forwarder\_use\_policy\_name\_prefix) | Whether to use unique name beginning with the specified `vpc_fl_forwarder_policy_name` for the VPC flow log forwarder role | `bool` | `false` | no |
 | <a name="input_vpc_fl_forwarder_use_role_name_prefix"></a> [vpc\_fl\_forwarder\_use\_role\_name\_prefix](#input\_vpc\_fl\_forwarder\_use\_role\_name\_prefix) | Whether to use unique name beginning with the specified `vpc_fl_forwarder_role_name` for the VPC flow log forwarder role | `bool` | `false` | no |
-| <a name="input_vpc_fl_forwarder_version"></a> [vpc\_fl\_forwarder\_version](#input\_vpc\_fl\_forwarder\_version) | VPC flow log lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"3.130.0"` | no |
+| <a name="input_vpc_fl_forwarder_version"></a> [vpc\_fl\_forwarder\_version](#input\_vpc\_fl\_forwarder\_version) | VPC flow log lambda version - see https://github.com/DataDog/datadog-serverless-functions/releases | `string` | `"4.12.0"` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of VPC to provision endpoints within | `string` | `null` | no |
 
 ## Outputs
