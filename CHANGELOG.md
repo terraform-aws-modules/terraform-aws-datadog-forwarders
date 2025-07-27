@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [7.0.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v6.2.0...v7.0.0) (2025-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade AWS provider and min required Terraform version to `6.0` and `1.5.7` respectively (#53)
+
+### Features
+
+* Upgrade AWS provider and min required Terraform version to `6.0` and `1.5.7` respectively ([#53](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/53)) ([7cbb68f](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/7cbb68fed208c817996b8307b54d9d992992f655))
+
 ## [6.2.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v6.1.0...v6.2.0) (2024-11-11)
 
 
