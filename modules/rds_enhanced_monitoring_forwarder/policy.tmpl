@@ -15,9 +15,23 @@
       "Sid": "WriteLogs"
     },
     {
-      "Action": "kms:Decrypt",
+      "Action": [
+        "kms:Decrypt"
+      ],
       "Effect": "Allow",
       "Resource": "*",
+      "Condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "lambda.*.amazonaws.com",
+            "secretsmanager.*.amazonaws.com"%{ if datadog_s3_bucket != "" },
+            "s3.*.amazonaws.com"%{ endif }
+          ]%{ if datadog_s3_bucket != "" },
+          "kms:EncryptionContext:aws:s3:arn": [
+            "${datadog_s3_bucket}/*"
+          ]%{ endif }
+        }
+      },
       "Sid": "KmsDecrypt"
     }%{ if dd_api_key_secret_arn != "" },
     {

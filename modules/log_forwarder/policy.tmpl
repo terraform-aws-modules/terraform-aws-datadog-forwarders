@@ -16,9 +16,23 @@
       "Sid": "AnyResourceAccess"
     },
     {
-      "Action": "kms:Decrypt",
+      "Action": [
+        "kms:Decrypt"
+      ],
       "Effect": "Allow",
       "Resource": "*",
+      "Condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "lambda.*.amazonaws.com",
+            "secretsmanager.*.amazonaws.com",
+            "s3.*.amazonaws.com"
+          ]%{ if datadog_s3_bucket != "" },
+          "kms:EncryptionContext:aws:s3:arn": [
+            "${datadog_s3_bucket}/*"
+          ]%{ endif }
+        }
+      },
       "Sid": "KmsDecrypt"
     },
     {
