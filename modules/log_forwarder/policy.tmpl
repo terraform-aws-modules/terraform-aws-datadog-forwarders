@@ -5,21 +5,43 @@
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:ListTagsLogGroup",
-        "tag:GetResources",
-        "logs:PutLogEvents"%{ if vpc_check },
+        "logs:PutLogEvents"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:logs:*:*:log-group:/aws/lambda/datadog-*",
+        "arn:aws:logs:*:*:log-group:/aws/lambda/datadog-*:*"
+      ],
+      "Sid": "CloudWatchLogsAccess"
+    },%{ if vpc_check }
+    {
+      "Action": [
         "ec2:CreateNetworkInterface",
         "ec2:DescribeNetworkInterfaces",
-        "ec2:DeleteNetworkInterface"%{ endif }
+        "ec2:DeleteNetworkInterface"
       ],
       "Effect": "Allow",
       "Resource": "*",
-      "Sid": "AnyResourceAccess"
-    },
+      "Condition": {
+        "StringLike": {
+          "aws:RequestedRegion": "*"
+        }
+      },
+      "Sid": "VPCNetworkAccess"
+    },%{ endif }
     {
       "Action": "kms:Decrypt",
       "Effect": "Allow",
       "Resource": "*",
-      "Sid": "KmsDecrypt"
+      "Condition": {
+        "StringEquals": {
+          "kms:ViaService": [
+            "s3.*.amazonaws.com",
+            "secretsmanager.*.amazonaws.com"
+          ]
+        }
+      },
+      "Sid": "KmsDecryptRestricted"
     },
     {
       "Action": [
