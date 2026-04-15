@@ -306,7 +306,7 @@ module "security_group" {
 
 module "log_bucket_1" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 5.0"
+  version = "v5.9.0"
 
   bucket_prefix = "logs-1-"
   force_destroy = true
@@ -317,9 +317,12 @@ module "log_bucket_1" {
 
   server_side_encryption_configuration = {
     rule = {
+      bucket_key_enabled = true
       apply_server_side_encryption_by_default = {
         sse_algorithm = "AES256"
       }
+      blocked_encryption_types = ["SSE-C"]
+
     }
   }
 
@@ -328,7 +331,7 @@ module "log_bucket_1" {
 
 module "log_bucket_2" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 5.0"
+  version = "v5.9.0"
 
   bucket_prefix = "logs-2-"
   force_destroy = true
@@ -339,9 +342,11 @@ module "log_bucket_2" {
 
   server_side_encryption_configuration = {
     rule = {
+      bucket_key_enabled = true
       apply_server_side_encryption_by_default = {
         sse_algorithm = "AES256"
       }
+      blocked_encryption_types = ["SSE-C"]
     }
   }
 

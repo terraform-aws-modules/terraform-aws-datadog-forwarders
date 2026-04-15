@@ -28,7 +28,7 @@ data "aws_region" "current" {
 
 module "this_s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "v5.2.0"
+  version = "v5.9.0"
 
   create_bucket = var.create && var.create_bucket
   bucket        = local.bucket_name
@@ -47,7 +47,9 @@ module "this_s3_bucket" {
 
   server_side_encryption_configuration = {
     rule = {
+      bucket_key_enabled = true
       apply_server_side_encryption_by_default = var.bucket_encryption_settings
+      blocked_encryption_types = var.bucket_blocked_encryption_types
     }
   }
 

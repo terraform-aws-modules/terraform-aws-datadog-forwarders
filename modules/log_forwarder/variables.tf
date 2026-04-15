@@ -56,6 +56,12 @@ variable "bucket_encryption_settings" {
   }
 }
 
+variable "bucket_blocked_encryption_types" {
+  description = "S3 bucket blocked encryption types"
+  type        = array(string)
+  default     = ["SSE-C"]
+}
+
 # Forwarder S3 Zip Objcet
 variable "bucket_prefix" {
   description = "S3 object key prefix to prepend to zip archive name"
