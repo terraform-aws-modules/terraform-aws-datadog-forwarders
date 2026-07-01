@@ -48,6 +48,7 @@ module "this_s3_bucket" {
   server_side_encryption_configuration = {
     rule = {
       apply_server_side_encryption_by_default = var.bucket_encryption_settings
+      blocked_encryption_types                = var.bucket_blocked_encryption_types
     }
   }
 
