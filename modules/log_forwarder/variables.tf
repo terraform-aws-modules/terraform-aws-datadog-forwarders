@@ -56,6 +56,12 @@ variable "bucket_encryption_settings" {
   }
 }
 
+variable "bucket_blocked_encryption_types" {
+  description = "List of encryption types to block on the bucket (e.g. `[\"SSE-C\"]`). Set to `[]` to block none. Defaults to blocking SSE-C, matching AWS's own default enforcement direction for new buckets, so the attribute doesn't drift against the provider's returned state on every plan"
+  type        = list(string)
+  default     = ["SSE-C"]
+}
+
 # Forwarder S3 Zip Objcet
 variable "bucket_prefix" {
   description = "S3 object key prefix to prepend to zip archive name"
