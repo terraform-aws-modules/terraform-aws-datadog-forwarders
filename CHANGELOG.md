@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [7.2.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v7.1.0...v7.2.0) (2026-07-06)
+
+### Features
+
+* Bump terraform-aws-modules/s3-bucket/aws v5.2.0 → v5.13.0 ([#66](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/66)) ([1aadc18](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/1aadc188f60fb6f79d5d9199be5453a977030b22))
+
 ## [7.1.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v7.0.1...v7.1.0) (2026-01-08)
 
 ### Features
