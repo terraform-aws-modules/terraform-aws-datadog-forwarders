@@ -64,20 +64,20 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.28 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.28 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_log_forwarder"></a> [log\_forwarder](#module\_log\_forwarder) | ./modules/log_forwarder | n/a |
 | <a name="module_rds_enhanced_monitoring_forwarder"></a> [rds\_enhanced\_monitoring\_forwarder](#module\_rds\_enhanced\_monitoring\_forwarder) | ./modules/rds_enhanced_monitoring_forwarder | n/a |
 | <a name="module_vpc_flow_log_forwarder"></a> [vpc\_flow\_log\_forwarder](#module\_vpc\_flow\_log\_forwarder) | ./modules/vpc_flow_log_forwarder | n/a |
@@ -85,7 +85,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_vpc_endpoint.agent](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
 | [aws_vpc_endpoint.api](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
 | [aws_vpc_endpoint.log_forwarder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
@@ -96,7 +96,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_agent_vpce_policy"></a> [agent\_vpce\_policy](#input\_agent\_vpce\_policy) | Policy to attach to the agent endpoint that controls access to the service. Defaults to full access | `any` | `null` | no |
 | <a name="input_agent_vpce_security_group_ids"></a> [agent\_vpce\_security\_group\_ids](#input\_agent\_vpce\_security\_group\_ids) | IDs of security groups to attach to agent endpoint | `list(string)` | `[]` | no |
 | <a name="input_agent_vpce_subnet_ids"></a> [agent\_vpce\_subnet\_ids](#input\_agent\_vpce\_subnet\_ids) | IDs of subnets to associate with agent endpoint | `list(string)` | `[]` | no |
@@ -247,7 +247,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_agent_endpoint_arn"></a> [agent\_endpoint\_arn](#output\_agent\_endpoint\_arn) | ARN of the agent VPC endpoint |
 | <a name="output_agent_endpoint_dns_entry"></a> [agent\_endpoint\_dns\_entry](#output\_agent\_endpoint\_dns\_entry) | DNS entries of the agent VPC endpoint |
 | <a name="output_agent_endpoint_id"></a> [agent\_endpoint\_id](#output\_agent\_endpoint\_id) | ID of the agent VPC endpoint |

@@ -18,7 +18,7 @@ Note that this example may create resources which will incur monetary charges on
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.28 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.0 |
@@ -26,20 +26,20 @@ Note that this example may create resources which will incur monetary charges on
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.28 |
 | <a name="provider_random"></a> [random](#provider\_random) | >= 2.0 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_default"></a> [default](#module\_default) | ../../ | n/a |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_kms_alias.datadog](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias) | resource |
 | [aws_kms_key.datadog](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
 | [random_pet.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | resource |
@@ -54,7 +54,7 @@ No inputs.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_log_forwarder_cloudwatch_log_group_arn"></a> [log\_forwarder\_cloudwatch\_log\_group\_arn](#output\_log\_forwarder\_cloudwatch\_log\_group\_arn) | The ARN of the log forwarder lambda function CloudWatch log group |
 | <a name="output_log_forwarder_lambda_arn"></a> [log\_forwarder\_lambda\_arn](#output\_log\_forwarder\_lambda\_arn) | The ARN of the log forwarder lambda function |
 | <a name="output_log_forwarder_lambda_qualified_arn"></a> [log\_forwarder\_lambda\_qualified\_arn](#output\_log\_forwarder\_lambda\_qualified\_arn) | The ARN of the log forwarder lambda function (if versioning is enabled via publish = true) |
