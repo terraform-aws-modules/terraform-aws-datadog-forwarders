@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [7.2.1](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v7.2.0...v7.2.1) (2026-08-26)
+
+### Bug Fixes
+
+* Update GitHub Actions and pre-commit hook versions ([#67](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/issues/67)) ([bdac8fc](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/commit/bdac8fcc93525abe072043570acaef8d20720e9b))
+
 ## [7.2.0](https://github.com/terraform-aws-modules/terraform-aws-datadog-forwarders/compare/v7.1.0...v7.2.0) (2026-07-06)
 
 ### Features
